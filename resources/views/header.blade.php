@@ -54,10 +54,14 @@
                     <li class="nav-item"><a class="nav-link">Flip Flops</a></li>
                   </ul>
                 </li>
-            
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('contact') }}" 
-                    >Contact</a
+                    >Sale</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('contact') }}" 
+                    >Men</a
                   >
                 </li>
                 <li class="nav-item submenu dropdown">
@@ -68,12 +72,17 @@
                     role="button"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    >About</a
+                    >Women</a
                   >
                   <ul class="dropdown-menu">
                     <li class="nav-item"><a class="nav-link">History</a></li>
                     <li class="nav-item"><a class="nav-link">About Us</a></li>
                   </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('contact') }}" 
+                    >Kids</a
+                  >
                 </li>
                 <li class="nav-item submenu dropdown">
                   <a

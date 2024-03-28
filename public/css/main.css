@@ -1503,11 +1503,12 @@ h6 {
 /* banner area css
 ============================================================================================ */
 .banner-area {
-    background: url(../img/banner/bi.png) center no-repeat;
+    background: url(../img/banner/bi.png) center no-repeat ;
     /* background-size: cover; */
     /* position: relative; */
     /* height: ; */
 }
+
 @media (max-width: 768px) {
     .banner-area .fullscreen {
         height: 650px !important;
@@ -1516,7 +1517,7 @@ h6 {
 .banner-area .active-banner-slider .owl-nav {
     position: absolute;
     right: 0;
-    bottom: -200px;
+    bottom: -100px;
 }
 @media (max-width: 1920px) {
     .banner-area .active-banner-slider .owl-nav {
@@ -1530,7 +1531,7 @@ h6 {
 }
 @media (max-width: 991px) {
     .banner-area .active-banner-slider .owl-nav {
-        display: none;
+        display: none;  
     }
 }
 .banner-area .active-banner-slider .owl-nav .owl-prev,
@@ -1556,10 +1557,10 @@ h6 {
     }
 }
 .banner-area .banner-content h1 {
-    font-size: 60px;
+    font-size: 52px;
     line-height: 66px;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 @media (max-width: 767px) {
     .banner-area .banner-content h1 {

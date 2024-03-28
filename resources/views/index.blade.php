@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
   </head>
-
   <body>
     <!-- Start Header Area -->
     @include('header')  <!-- Including the header.blade.php file -->
@@ -36,7 +35,7 @@
     <!-- start banner Area -->
     <section class="banner-area">
       <div class="container"    >
-        <div class="row fullscreen align-items-center justify-content-start">
+        <div class="row fullscreen align-items-center justify-content-start" >
           <div class="col-lg-12">
             <div class="active-banner-slider owl-carousel">
               <!-- single-slide -->

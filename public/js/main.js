@@ -13,9 +13,9 @@ $(document).ready(function(){
     $(".fitscreen").css("height", fitscreen);
 
   //------- Active Nice Select --------//
+  
 
     $('select').niceSelect();
-
 
     $('.navbar-nav li.dropdown').hover(function() {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
@@ -50,12 +50,12 @@ $(document).ready(function(){
     ==================================*/
     $(".active-banner-slider").owlCarousel({
         items:1,
-        autoplay:false,
+        autoplay:true,
         autoplayTimeout: 5000,
         loop:true,
-        nav:true,
+        nav:false,
         navText:["<img src='img/banner/prev.png'>","<img src='img/banner/next.png'>"],
-        dots:false
+        dots:true
     });
 
     /*=================================
@@ -76,8 +76,8 @@ $(document).ready(function(){
     ==================================*/
     $(".s_Product_carousel").owlCarousel({
       items:1,
-      autoplay:false,
-      autoplayTimeout: 5000,
+      autoplay:true,
+      autoplayTimeout: 1000,
       loop:true,
       nav:false,
       dots:true
@@ -88,8 +88,8 @@ $(document).ready(function(){
     ==================================*/
     $(".active-exclusive-product-slider").owlCarousel({
         items:1,
-        autoplay:false,
-        autoplayTimeout: 5000,
+        autoplay:true,
+        autoplayTimeout: 1000,
         loop:true,
         nav:true,
         navText:["<img src='img/product/prev.png'>","<img src='img/product/next.png'>"],
@@ -558,8 +558,4 @@ $(document).ready(function(){
           ]
         });
       }
-
-
-  
-
  });
