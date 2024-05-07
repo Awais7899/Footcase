@@ -180,6 +180,10 @@ ul {
     list-style: none;
 }
 
+.profile {
+    font-weight: 700;
+}
+
 h1,
 h2,
 h3,
@@ -1237,10 +1241,10 @@ h6 {
 
 .sticky-wrapper {
     position: absolute;
-    top: 40px;
+    top: 20px;
     width: 100%;
 }
-@media (max-width: 991px) {
+@media (max-width: 991px) {     
     .sticky-wrapper {
         top: 0;
     }
@@ -1503,7 +1507,7 @@ h6 {
 /* banner area css
 ============================================================================================ */
 .banner-area {
-    background: url(../img/banner/bi.png) center no-repeat ;
+    background: url(../img/banner/bi.png) center no-repeat;
     /* background-size: cover; */
     /* position: relative; */
     /* height: ; */
@@ -1531,7 +1535,7 @@ h6 {
 }
 @media (max-width: 991px) {
     .banner-area .active-banner-slider .owl-nav {
-        display: none;  
+        display: none;
     }
 }
 .banner-area .active-banner-slider .owl-nav .owl-prev,

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['middleware' => 'auth'], function () {
+    // Place your authenticated routes here
+    Route::get('/', function () {
+        return view('index');
+    });
+    // Add more authenticated routes as needed
 });
-Route::get('/contact',  function ()  {
+
+Route::get('/contact',  function () {
     return view('contact');
 });
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/register', function () {
-    return view('signup');
-});
+
+Route::get('/login', [UserController::class, 'Login'])->name('login');
+Route::get('/register', [UserController::class, 'Register'])->name('resgiter');
+Route::post('/submit', [UserController::class, 'Create']);
+Route::post('/login', [UserController::class, 'Authenticate']);
+
+// Route::get('/register', function () {
+//     return view('signup');
+// });
 Route::get('/category', function () {
     return view('category');
 });
@@ -42,4 +51,7 @@ Route::get('/confirmation', function () {
 });
 Route::get('/tracking', function () {
     return view('tracking');
+});
+Route::get('/test', function () {
+    return view('admin.index');
 });

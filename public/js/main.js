@@ -183,6 +183,12 @@ $(document).ready(function(){
     });   
 
 
+     $(document).ready(function () {
+         $("#registerationForm").find("form").ajaxChimp();
+     });   
+
+
+
 
      if(document.getElementById("js-countdown")){
 

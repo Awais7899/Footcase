@@ -12,11 +12,15 @@
 	<meta name="description" content="">
 	<!-- Meta Keyword -->
 	<meta name="keywords" content="">
+
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>Register in Matrix</title>
 
+	@vite('resources/js/userForm.js')
 	<!--
 		CSS
 		============================================= -->
@@ -35,19 +39,6 @@
 	<!-- Start Header Area -->
 	@include('header')
 	<!-- End Header Area -->
-
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<a href="{{ url('/category') }}"> <h1 style="margin-right: 35px">SignUp</h1></a>
-				  </div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
-
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap">
 		<div class="container">
@@ -58,29 +49,37 @@
 						<div class="hover">
 							<h4>Already a User?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="primary-btn" href="login.html" target="_blank" style="color:aliceblue">Sign In</a>
+							<a class="primary-btn" href="{{ url('login')}}" style="color:aliceblue">Sign In</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
-						<h3>New User Register Here</h3>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<h3>Register Here</h3>
+						<form class="row login_form" method="post" id="registerationForm">
+							@csrf
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Full Name'">
-							</div>
-                            <div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="name" name="name" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'">
-							</div>
-                            <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Enter User Name'" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter User Name'">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Full Name'" required>
+								@if ($errors->has('name'))
+								<span class="text-danger">{{ $errors->first('name') }}</span>
+								@endif
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Enter Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Password'">
+								<input type="text" class="form-control" id="username" name="username" placeholder="Enter User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter User Name'" required>
 							</div>
-                            <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-							</div> 
+							<div class="col-md-12 form-group">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" required>
+								@if ($errors->has('email'))
+								<span class="text-danger">{{ $errors->first('email') }}</span>
+								@endif
+							</div>
+							@if ($errors->has('password'))
+							<span class="text-danger">{{ $errors->first('password') }}</span>
+							@endif
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Password'" required>
+							</div>
+
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" id="f-option2" name="selector">
@@ -89,100 +88,18 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Sign up</button>
-								<!-- <a href="#">Forgot Password?</a> -->
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
+			<div id="errors-list"></div>
 		</div>
 	</section>
 	<!--================End Login Box Area =================-->
 
-	<!-- start footer Area -->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Us</h6>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-4  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
-									 required="" type="email">
-
-
-									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-									<!-- <div class="col-lg-4 col-md-4">
-													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-												</div>  -->
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">Instragram Feed</h6>
-						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="img/i1.jpg" alt=""></li>
-							<li><img src="img/i2.jpg" alt=""></li>
-							<li><img src="img/i3.jpg" alt=""></li>
-							<li><img src="img/i4.jpg" alt=""></li>
-							<li><img src="img/i5.jpg" alt=""></li>
-							<li><img src="img/i6.jpg" alt=""></li>
-							<li><img src="img/i7.jpg" alt=""></li>
-							<li><img src="img/i8.jpg" alt=""></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Follow Us</h6>
-						<p>Let us be social</p>
-						<div class="footer-social d-flex align-items-center">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
-
-
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/jquery.ajaxchimp.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>
@@ -194,6 +111,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="js/gmaps.min.js"></script>
 	<script src="js/main.js"></script>
+
 </body>
 
 </html>
