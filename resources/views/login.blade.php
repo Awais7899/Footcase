@@ -33,9 +33,7 @@
 </head>
 
 <body>
-  <!-- Start Header Area -->
-  @include('header')
-  <!-- End Header Area -->
+
 
   <!--================Login Box Area =================-->
   <section class="login_box_area section_gap">
@@ -60,10 +58,12 @@
             <form class="row login_form" method="post" id="loginForm">
               @csrf
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" />
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+                  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" />
               </div>
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" />
+                <input type="text" class="form-control" id="password" name="password" placeholder="Password"
+                  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" />
               </div>
               <div class="col-md-12 form-group">
                 <div class="creat_account">
@@ -88,7 +88,9 @@
   <!--================End Login Box Area =================-->
 
   <script src="js/vendor/jquery-2.2.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+  </script>
   <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/jquery.ajaxchimp.min.js"></script>
   <script src="js/jquery.nice-select.min.js"></script>

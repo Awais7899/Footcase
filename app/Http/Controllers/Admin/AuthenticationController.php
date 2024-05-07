@@ -11,7 +11,6 @@ class AuthenticationController extends Controller
     public function Authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
 
             $user = Auth::user(); // Retrieve the authenticated user
@@ -19,7 +18,7 @@ class AuthenticationController extends Controller
                 // User is an admin, redirect to admin panel
                 return response()->json([
                     "status" => true,
-                    "redirect" => url("/admins")
+                    "redirect" => url('/admin-panel')
                 ]);
             } else {
                 // User is not an admin, handle accordingly

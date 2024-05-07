@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 
 require __DIR__ . '/admin.php';
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'user']], function () {
     // Place your authenticated routes here
     Route::get('/', function () {
         return view('index');
@@ -31,10 +31,19 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 
-Route::get('/login', [UserController::class, 'Login'])->name('login');
-Route::post('/login', [UserController::class, 'Authenticate']);
-Route::get('/register', [UserController::class, 'Register'])->name('resgiter');
-Route::post('/submit', [UserController::class, 'Create']);
+
+
+Route::group(['middleware' => ['guest']], function () {
+    // Place your authenticated routes here
+    Route::get('/login', [UserController::class, 'Login'])->name('login');
+    Route::post('/login', [UserController::class, 'Authenticate']);
+    Route::get('/register', [UserController::class, 'Register'])->name('resgiter');
+    Route::post('/submit', [UserController::class, 'Create']);
+    // Add more authenticated routes as needed
+});
+
+
+
 
 // Route::get('/register', function () {
 //     return view('signup');
@@ -57,6 +66,6 @@ Route::get('/confirmation', function () {
 Route::get('/tracking', function () {
     return view('tracking');
 });
-Route::get('/test', function () {
-    return view('admin.index');
-});
+// Route::get('/test', function () {
+//     return view('admin.index');
+// });

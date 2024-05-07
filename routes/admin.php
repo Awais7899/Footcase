@@ -17,14 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('admins')->group(function () {
+
+Route::group(['middleware' => ['guest']], function () {
+    // Place your authenticated routes here
+    Route::get('/admin-panel/login', function () {
+        return view('admin.login');
+    })->name("admin-login");
+    Route::post('/admin-panel/login', [AuthenticationController::class, 'Authenticate']);
+    // Add more authenticated routes as needed
+});
+
+
+
+Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-
-    Route::get('/login', function () {
-        return view('admin.login');
-    })->name("admin-login");
-
-    Route::post('/login', [AuthenticationController::class, 'Authenticate']);
+    Route::get('/categories', function () {
+        return view('admin.categories');
+    });
 });
