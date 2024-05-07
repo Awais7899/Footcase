@@ -14,6 +14,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
+require __DIR__ . '/admin.php';
+
 Route::group(['middleware' => 'auth'], function () {
     // Place your authenticated routes here
     Route::get('/', function () {
@@ -22,14 +25,16 @@ Route::group(['middleware' => 'auth'], function () {
     // Add more authenticated routes as needed
 });
 
+
+
 Route::get('/contact',  function () {
     return view('contact');
 });
 
 Route::get('/login', [UserController::class, 'Login'])->name('login');
+Route::post('/login', [UserController::class, 'Authenticate']);
 Route::get('/register', [UserController::class, 'Register'])->name('resgiter');
 Route::post('/submit', [UserController::class, 'Create']);
-Route::post('/login', [UserController::class, 'Authenticate']);
 
 // Route::get('/register', function () {
 //     return view('signup');
