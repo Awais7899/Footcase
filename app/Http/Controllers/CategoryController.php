@@ -4,23 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories = Category::select(['id', 'title', 'active_status']);
+        if ($request->ajax()) {
+            // if ($request->has('search') && !empty($request->search['value'])) {
+            //     $search = $request->search['value'];
+            //     $categories->where(function ($query) use ($search) {
+            //         $query->where('id', 'like', "%$search%")
+            //             ->orWhere('title', 'like', "%$search%")
+            //             ->orWhere('active_status', 'like', "%$search%");
+            //     });
+            // }
+            return DataTables::of($categories)
+                ->addIndexColumn()
+                ->addColumn('action', function ($category) {
+                    // Here you can add any action buttons or links
+                    return '<button class="btn btn-primary mx-1 edit-btn" data-category=\'' . json_encode($category) . '\'>Edit</button><button class="btn btn-danger delete-btn" data-category=\'' . json_encode($category) . '\'>Delete</button>';
+                })
+                ->rawColumns(['action'])
+                ->toJson();
+        }
+        return view('admin.categories');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $category = new Category();
+        $category->title = $request['title'];
+        $category->active_status = $request['activeStatus'];
+        if ($category->save()) {
+            // Data saved successfully, return a success response
+
+            return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
+        } else {
+            // Data saving failed, return an error response
+            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+        }
     }
 
     /**
