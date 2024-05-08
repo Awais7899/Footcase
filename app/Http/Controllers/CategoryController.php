@@ -13,16 +13,8 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::select(['id', 'title', 'active_status']);
+        $categories = Category::all();
         if ($request->ajax()) {
-            // if ($request->has('search') && !empty($request->search['value'])) {
-            //     $search = $request->search['value'];
-            //     $categories->where(function ($query) use ($search) {
-            //         $query->where('id', 'like', "%$search%")
-            //             ->orWhere('title', 'like', "%$search%")
-            //             ->orWhere('active_status', 'like', "%$search%");
-            //     });
-            // }
             return DataTables::of($categories)
                 ->addIndexColumn()
                 ->addColumn('action', function ($category) {
@@ -80,16 +72,25 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        // Find the category by its ID
+        $category = Category::findOrFail($id);
+
+        // Update the category attributes
+        $category->update($request->only('title', 'active_status'));
+        // Return a response indicating success
+        return response()->json(['status' => true, 'message' => 'Category updated successfully'], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return response()->json(['status' => true, 'message' => 'Category deleted successfully'], 200);
     }
 }

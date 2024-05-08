@@ -42,19 +42,17 @@ $(document).ready(function () {
         //     // d.search = $('input[type="search"]').val();
         // },
         columns: [
-            { data: "id", name: "id " },
+            { data: "DT_RowIndex", name: "DT_RowIndex" },
             { data: "title", name: "title" },
-            { data: "active_status", name: "status" },
+            { data: "active_status", name: "active_status" },
             { data: "action", name: "action" },
         ],
     });
 
+    var categoryData;
     $("#example").on("click", ".edit-btn", function (event) {
-        var categoryData = $(this).data("category");
-
-        console.warn(categoryData);
+        categoryData = $(this).data("category");
         $("#categoryEdit").modal("show");
-        $("#categoryId").val(categoryData.id);
         $("#categoryTitle").val(categoryData.title);
         $("#categoryActiveStatus").val(categoryData.active_status);
 
@@ -62,8 +60,8 @@ $(document).ready(function () {
     });
 
     $("#example").on("click", ".delete-btn", function (event) {
-        var categoryId = $(this).data("id");
-        alert("Delete button clicked for category ID: " + categoryId);
+        categoryData = $(this).data("category");
+        $("#delateModal").modal("show");
     });
 
     $("#addCategory").submit(function (event) {
@@ -93,41 +91,56 @@ $(document).ready(function () {
         });
     });
 
-    // $("#example").DataTable({
-    //     language: {
-    //         lengthMenu: "_MENU_", // Customize the text as per your preference
-    //         info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text
-    //     },
-    // });
+    $("#editCategory").submit(function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        var formData = $(this).serialize();
+        console.log(formData);
+        let categoryId = categoryData.id;
+        $.ajax({
+            type: "PUT", // Use POST method
+            url: `/admin-panel/categories/${categoryId}`, // Specify the URL of your controller
+            data: formData, // Pass the form data
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+            },
+            success: function (response) {
+                console.log("Success:", response);
+                if (response.status) {
+                    table.draw();
+                    $("#editCategory").trigger("reset");
+                    $("#categoryEdit").modal("hide");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error("Error:", error);
+            },
+        });
+    });
+
+
+    $("#deleteCategory").submit(function (event) {
+        event.preventDefault();
+        let categoryId = categoryData.id;
+        $.ajax({
+            type: "DELETE", // Use POST method
+            url: `/admin-panel/categories/${categoryId}`, // Specify the URL of your controller
+
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+            },
+            success: function (response) {
+                console.log("Success:", response);
+                if (response.status) {
+                    table.draw();
+                    $("#deleteCategory").trigger("reset");
+                    $("#delateModal").modal("hide");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error("Error:", error);
+            },
+        });
+    });
 });
-
-// <script>
-//     $(document).ready(function() {
-//         $.noConflict();
-//         var token = ''
-//         var modal = $('.modal')
-//         var form = $('.form')
-//         var btnAdd = $('.add'),
-//             btnSave = $('.btn-save'),
-//             btnUpdate = $('.btn-update');
-
-//         btnSave.click(function(e){
-//             e.preventDefault();
-//             var data = form.serialize()
-//             console.log(data)
-//             $.ajax({
-//                 type: "POST",
-//                 url: "",
-//                 data: data+'&_token='+token,
-//                 success: function (data) {
-//                     if (data.success) {
-//                         table.draw();
-//                         form.trigger("reset");
-//                         modal.modal('hide');
-//                     }
-//                     else {
-//                         alert('Delete Fail');
-//                     }
-//                 }
-//              }); //end ajax
-//         })

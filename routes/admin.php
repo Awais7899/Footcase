@@ -36,6 +36,7 @@ Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
         return view('admin.index');
     });
     Route::get('/categories', [CategoryController::class, 'index']);
-
     Route::post('/categories', [CategoryController::class, 'create']);
+    Route::put('/categories/{id}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 });
