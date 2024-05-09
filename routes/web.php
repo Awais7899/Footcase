@@ -17,6 +17,8 @@ use App\Http\Controllers\UserController;
 
 require __DIR__ . '/admin.php';
 
+
+
 Route::group(['middleware' => ['auth', 'user']], function () {
     // Place your authenticated routes here
     Route::get('/', function () {
@@ -32,8 +34,7 @@ Route::get('/contact',  function () {
 });
 
 
-
-Route::group(['middleware' => ['guest']], function () {
+Route::group(['middleware' => 'guest'], function () {
     // Place your authenticated routes here
     Route::get('/login', [UserController::class, 'Login'])->name('login');
     Route::post('/login', [UserController::class, 'Authenticate']);

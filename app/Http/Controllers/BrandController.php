@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Brand;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $categories = Category::all();
+
+        $brands = Brand::all();
         if ($request->ajax()) {
 
-            return DataTables::of($categories)
+            return DataTables::of($brands)
                 ->addIndexColumn()
-                ->addColumn('action', function ($category) {
-                    // Here you can add any action buttons or links
-                    return '<button class="btn btn-primary mx-1 edit-btn" data-category=\'' . json_encode($category) . '\'>Edit</button><button class="btn btn-danger delete-btn" data-category=\'' . json_encode($category) . '\'>Delete</button>';
+                ->addColumn('action', function ($brands) {
+                    return '<button class="btn btn-primary mx-1 edit-btn" data-brand=\'' . json_encode($brands) . '\'>Edit</button><button class="btn btn-danger delete-btn" data-brand=\'' . json_encode($brands) . '\'>Delete</button>';
                 })
                 ->rawColumns(['action'])
                 ->toJson();
         }
-        return view('admin.categories');
+        return view('admin.brands');
     }
 
     /**
@@ -33,10 +34,10 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        $category = new Category();
-        $category->title = $request['title'];
-        $category->active_status = $request['activeStatus'];
-        if ($category->save()) {
+        $brand = new Brand();
+        $brand->title = $request['title'];
+        $brand->active_status = $request['activeStatus'];
+        if ($brand->save()) {
             // Data saved successfully, return a success response
 
             return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
@@ -57,7 +58,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Brand $brand)
     {
         //
     }
@@ -65,7 +66,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Brand $brand)
     {
         //
     }
@@ -76,10 +77,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         // Find the category by its ID
-        $category = Category::findOrFail($id);
+        $brand = Brand::findOrFail($id);
 
         // Update the category attributes
-        $category->update($request->only('title', 'active_status', 'category_id'));
+        $brand->update($request->only('title', 'active_status', 'category_id'));
         // Return a response indicating success
         return response()->json(['status' => true, 'message' => 'Category updated successfully'], 200);
     }
@@ -89,9 +90,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-
+        $brand = Brand::findOrFail($id);
+        $brand->delete();
         return response()->json(['status' => true, 'message' => 'Category deleted successfully'], 200);
     }
 }
