@@ -32,6 +32,7 @@ class UserController extends Controller
                 "error" => "Invalid credentials. Please try again."
             ]);
         }
+
     }
     public function Register()
     {

@@ -33,7 +33,6 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 
-
 Route::group(['middleware' => 'guest'], function () {
     // Place your authenticated routes here
     Route::get('/login', [UserController::class, 'Login'])->name('login');
@@ -43,12 +42,10 @@ Route::group(['middleware' => 'guest'], function () {
     // Add more authenticated routes as needed
 });
 
-
-
-
 // Route::get('/register', function () {
 //     return view('signup');
 // });
+
 Route::get('/category', function () {
     return view('category');
 });
