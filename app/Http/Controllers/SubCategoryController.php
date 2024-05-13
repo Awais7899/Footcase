@@ -48,6 +48,17 @@ class SubCategoryController extends Controller
             return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
         }
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function subcategoriesOfCategories($category_id)
+    {
+        $subcategories = SubCategory::where('category_id', $category_id)->get();
+        return response()->json($subcategories);
+        
+    }
     /**
      * Store a newly created resource in storage.
      */

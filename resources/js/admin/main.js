@@ -374,12 +374,153 @@ $(document).ready(function () {
         });
     });
 
-    //////////////---------- Usrs Table ------------------/////////////////////////////*css*/`
+    //////////////---------- Usrs Table ------------------/////////////////////////////
 
     $("#user_table").DataTable({
         language: {
             lengthMenu: "_MENU_", // Customize the text as per your preference
             info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text
         },
+    });
+
+    ////////////////////////////////  Products Sectionss //////////////////////////////////////////
+
+    var productTable = $("#product_table").DataTable({
+        language: {
+            lengthMenu: "_MENU_", // Customize the text as per your preference
+            info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text
+        },
+        ajax: {
+            url: "/admin-panel/products",
+            type: "GET",
+        },
+        processing: true,
+        serverSide: true,
+        columns: [
+            { data: "DT_RowIndex", name: "DT_RowIndex" },
+            { data: "sku", name: "sku" },
+            { data: "category_name", name: "category_name" },
+            { data: "sub_category_name", name: "sub_category_name" },
+            { data: "brand_name", name: "brand_name" },
+            { data: "price", name: "price" },
+            { data: "size_no", name: "size_no" },
+            { data: "action", name: "action" },
+        ],
+    });
+
+    // ;
+    $("#category_id").on("change", function () {
+        var category_id = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url: `/admin-panel/sub_categories/${category_id}`,
+            success: function (data) {
+                $("#sub_categories_id").empty();
+                $.each(data, function (key, value) {
+                    $("#sub_categories_id").append(
+                        '<option value="' +
+                            value.id +
+                            '">' +
+                            value.title +
+                            "</option>"
+                    );
+                });
+            },
+        });
+    });
+
+    var productData;
+    $("#product_table").on("click", ".edit-btn", function (event) {
+        productData = $(this).data("brand");
+        $("#fullscreenModalEditModal").modal("show");
+        // $("#brandTitle").val(brandData.title);
+        // $("#brandStatus").val(brandData.active_status);
+        // alert("Edit button clicked for category ID: " + categoryId);
+    });
+
+    $("#product_table").on("click", ".delete-btn", function (event) {
+        brandData = $(this).data("brand");
+        $("#delateModal").modal("show");
+    });
+
+    $("#addProduct").submit(function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        var formData = new FormData(this);
+        console.warn(formData);
+        $.ajax({
+            type: "POST", // Use POST method
+            url: "/admin-panel/products", // Specify the URL of your controller
+            data: formData, // Pass the form data
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+            },
+            success: function (response) {
+                console.log("Success:", response);
+                if (response.status) {
+                    productTable.draw();
+                    $("#addProduct").trigger("reset");
+                    $("#fullscreenModal").modal("hide");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error("Error:", error);
+            },
+        });
+    });
+
+    $("#editBrand").submit(function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        var formData = $(this).serialize();
+        console.log(formData);
+        let categoryId = brandData.id;
+        $.ajax({
+            type: "PUT", // Use POST method
+            url: `/admin-panel/brands/${categoryId}`, // Specify the URL of your controller
+            data: formData, // Pass the form data
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+            },
+            success: function (response) {
+                console.log("Success:", response);
+                if (response.status) {
+                    brandTable.draw();
+                    $("#editBrand").trigger("reset");
+                    $("#categoryEdit").modal("hide");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error("Error:", error);
+            },
+        });
+    });
+
+    $("#deleteBrand").submit(function (event) {
+        event.preventDefault();
+        let categoryId = brandData.id;
+        $.ajax({
+            type: "DELETE", // Use POST method
+            url: `/admin-panel/brands/${categoryId}`, // Specify the URL of your controller
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+            },
+            success: function (response) {
+                console.log("Success:", response);
+                if (response.status) {
+                    brandTable.draw();
+                    $("#deleteBrand").trigger("reset");
+                    $("#delateModal").modal("hide");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error("Error:", error);
+            },
+        });
     });
 });

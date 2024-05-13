@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,11 +47,17 @@ Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
     Route::put('/sub_categories/{id}', [SubCategoryController::class, 'update']);
     Route::delete('/sub_categories/{id}', [SubCategoryController::class, 'destroy']);
 
+    Route::get('/sub_categories/{id}', [SubCategoryController::class, 'subcategoriesOfCategories']);
+
     Route::get('/brands', [BrandController::class, 'index']);
     Route::post('/brands', [BrandController::class, 'create']);
     Route::put('/brands/{id}', [BrandController::class, 'update']);
     Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
 
     Route::get('/users', [UserController::class, 'index']);
-    
+
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::post('/products', [ProductController::class, 'create']);
+    Route::put('/products/{id}', [ProductController::class, 'update']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });

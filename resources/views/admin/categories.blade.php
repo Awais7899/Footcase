@@ -1,11 +1,10 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Product Categories
+    Footcase - Categories
 @endsection
 
 @section('css')
-
 @endsection
 
 @section('content')
@@ -50,7 +49,6 @@
                             Add
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -139,5 +137,4 @@
 @endsection
 
 @section('script')
-    
 @endsection

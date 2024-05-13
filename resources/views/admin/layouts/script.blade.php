@@ -14,6 +14,5 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
-
 <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
 @vite('resources/js/admin/main.js')

@@ -7,7 +7,7 @@
              </a>
          </li><!-- End Dashboard Nav -->
          <li class="nav-item">
-             <a class="nav-link collapsed" href="users-profile.html">
+             <a class="nav-link collapsed"href="{{url('/admin-panel/products')}}">
                  <i class="bi bi-person"></i>
                  <span>Products</span>
              </a>
