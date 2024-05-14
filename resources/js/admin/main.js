@@ -297,6 +297,7 @@ $(document).ready(function () {
         $("#delateModal").modal("show");
     });
 
+    
     $("#addBrand").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
         var formData = $(this).serialize();
@@ -432,11 +433,11 @@ $(document).ready(function () {
 
     var productData;
     $("#product_table").on("click", ".edit-btn", function (event) {
-        productData = $(this).data("brand");
+        productData = $(this).data("product");
+        console.warn(productData);
         $("#fullscreenModalEditModal").modal("show");
-        // $("#brandTitle").val(brandData.title);
-        // $("#brandStatus").val(brandData.active_status);
-        // alert("Edit button clicked for category ID: " + categoryId);
+        $("#sku").val(productData.sku);
+        $("#price").val(productData.price);
     });
 
     $("#product_table").on("click", ".delete-btn", function (event) {

@@ -16,7 +16,7 @@
     <div class="modal fade" id="fullscreenModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen ">
             <div class="modal-content ">
-                <div class="modal-header">
+                <div class="modal-header container">
                     <h5 class="modal-title">Add New Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -28,21 +28,21 @@
                                 <div class="mb-3 col-sm-4">
                                     <label for="inputText" class="col-sm-2 col-form-label">SKU</label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="sku" name="sku"
+                                        <input type="text" class="form-control"  name="sku"
                                             placeholder="Enter sku" required>
                                     </div>
                                 </div>
                                 <div class="mb-3 col-sm-4">
                                     <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                                     <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="price" id="price"
+                                        <input type="number" class="form-control" name="price" 
                                             placeholder="Enter price"required>
                                     </div>
                                 </div>
                                 <div class="mb-3 col-sm-4">
                                     <label for="inputText" class="col-sm-2 col-form-label">Size</label>
                                     <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="size_no" id="size_no"
+                                        <input type="number" class="form-control" name="size_no"
                                             placeholder="Enter size"required>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer  container">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>

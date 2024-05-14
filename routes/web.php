@@ -33,14 +33,14 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 
-Route::group(['middleware' => 'guest'], function () {
+// Route::group(['middleware' => 'guest'], function () {
     // Place your authenticated routes here
     Route::get('/login', [UserController::class, 'Login'])->name('login');
     Route::post('/login', [UserController::class, 'Authenticate']);
     Route::get('/register', [UserController::class, 'Register'])->name('resgiter');
     Route::post('/submit', [UserController::class, 'Create']);
     // Add more authenticated routes as needed
-});
+// });
 
 // Route::get('/register', function () {
 //     return view('signup');
