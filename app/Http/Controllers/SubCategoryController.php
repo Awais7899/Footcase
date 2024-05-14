@@ -57,7 +57,6 @@ class SubCategoryController extends Controller
     {
         $subcategories = SubCategory::where('category_id', $category_id)->get();
         return response()->json($subcategories);
-        
     }
     /**
      * Store a newly created resource in storage.
@@ -91,7 +90,6 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $sub_category = SubCategory::findOrFail($id);
-
         // Update the category attributes
         $sub_category->update($request->only('title', 'active_status', 'category_id'));
         // Return a response indicating success

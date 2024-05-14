@@ -52,6 +52,8 @@ class ProductController extends Controller
         $request->validate([
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
         ]);
+
+
         try {
             $product = new Product();
             $product->sku = $request['sku'];
@@ -65,7 +67,6 @@ class ProductController extends Controller
             $product->seasonability = $request['seasonability'];
             $imageName = time() . '.' . $request->product_image->getClientOriginalExtension();
             $request->product_image->move(public_path('uploads'), $imageName);
-
             $product->product_image = $imageName;
             if ($product->save()) {
                 // Data saved successfully, return a success response
@@ -107,16 +108,47 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->sku = $request['sku'];
+        $product->price = $request['price'];
+        $product->size_no = $request['size_no'];
+        $product->new_collection = $request['new_collection'];
+        $product->category_id = $request['category_id'];
+        $product->sub_categories_id = $request['sub_categories_id'];
+        $product->brands_id = $request['brands_id'];
+        $product->description = $request['description'];
+        $product->seasonability = $request['seasonability'];
+        $product->sale = $request['sale'];
+        $product->discount = $request['discount'];
+
+        if ($request->has('previuos_image')) {
+            $product->product_image = $request['previuos_image'];
+        } else {
+            $request->validate([
+                'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
+            ]);
+            $imageName = time() . '.' . $request->product_image->getClientOriginalExtension();
+            $request->product_image->move(public_path('uploads'), $imageName);
+            $product->product_image = $imageName;
+        }
+        
+        if ($product->update()) {
+            return response()->json(['status' => true, 'message' => 'Data updated successfully'], 200);
+        } else {
+            // Data saving failed, return an error response
+            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return response()->json(['status' => true, 'message' => 'Sub Category deleted successfully'], 200);
     }
 }

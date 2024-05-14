@@ -297,7 +297,6 @@ $(document).ready(function () {
         $("#delateModal").modal("show");
     });
 
-    
     $("#addBrand").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
         var formData = $(this).serialize();
@@ -412,7 +411,7 @@ $(document).ready(function () {
     // ;
     $("#category_id").on("change", function () {
         var category_id = $(this).val();
-
+        console.warn(category_id);
         $.ajax({
             type: "GET",
             url: `/admin-panel/sub_categories/${category_id}`,
@@ -431,17 +430,49 @@ $(document).ready(function () {
         });
     });
 
+    $("#sale").on("change", function () {
+        var sale_value = $(this).val();
+        if (sale_value === "1") {
+            $("#discount_container").css("display", "block");
+        } else {
+            $("#discount_container").css("display", "none");
+        }
+    });
+
     var productData;
     $("#product_table").on("click", ".edit-btn", function (event) {
         productData = $(this).data("product");
-        console.warn(productData);
+        console.log(productData);
         $("#fullscreenModalEditModal").modal("show");
         $("#sku").val(productData.sku);
         $("#price").val(productData.price);
+        $("#size_no").val(productData.size_no);
+        $("#edit_category_id").val(productData.category_id);
+        $("#brands_id").val(productData.brands_id);
+        $("#seasonability").val(productData.seasonability);
+        $("#new_collection").val(productData.new_collection);
+        $("#description").val(productData.description);
+        $("#sale").val(productData.sale);
+        if (productData.sale === "1") {
+            $("#discount_container").css("display", "block");
+            $("#discount").val(productData.discount);
+        } else {
+            $("#discount_container").css("display", "none");
+        }
+        $("#edit_sub_categories_id").append(
+            '<option value="' +
+                productData.sub_category.id +
+                '">' +
+                productData.sub_category.title +
+                "</option>"
+        );
+        $("#edit_sub_categories_id").val(productData.sub_categories_id);
+        const imageUrl = base_url + "uploads/" + productData.product_image;
+        $("#image_prev").attr("src", imageUrl);
     });
 
     $("#product_table").on("click", ".delete-btn", function (event) {
-        brandData = $(this).data("brand");
+        productData = $(this).data("product");
         $("#delateModal").modal("show");
     });
 
@@ -474,24 +505,30 @@ $(document).ready(function () {
         });
     });
 
-    $("#editBrand").submit(function (event) {
+    $("#editProduct").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
-        var formData = $(this).serialize();
-        console.log(formData);
-        let categoryId = brandData.id;
+        var formData = new FormData(this);
+        let product_id = productData.id;
+        if (formData.get("product_image").name == "") {
+            // Field exists
+            formData.append("previuos_image", productData.product_image);
+        }
         $.ajax({
-            type: "PUT", // Use POST method
-            url: `/admin-panel/brands/${categoryId}`, // Specify the URL of your controller
+            type: "POST", // Use POST method
+            url: `/admin-panel/products/${product_id}`, // Specify the URL of your controller
             data: formData, // Pass the form data
+            cache: false,
+            contentType: false,
+            processData: false,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
             },
             success: function (response) {
                 console.log("Success:", response);
                 if (response.status) {
-                    brandTable.draw();
-                    $("#editBrand").trigger("reset");
-                    $("#categoryEdit").modal("hide");
+                    productTable.draw();
+                    $("#editProduct").trigger("reset");
+                    $("#fullscreenModalEditModal").modal("hide");
                 }
             },
             error: function (xhr, status, error) {
@@ -501,20 +538,20 @@ $(document).ready(function () {
         });
     });
 
-    $("#deleteBrand").submit(function (event) {
+    $("#deleteProduct").submit(function (event) {
         event.preventDefault();
-        let categoryId = brandData.id;
+        let product_id = productData.id;
         $.ajax({
             type: "DELETE", // Use POST method
-            url: `/admin-panel/brands/${categoryId}`, // Specify the URL of your controller
+            url: `/admin-panel/products/${product_id}`, // Specify the URL of your controller
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
             },
             success: function (response) {
                 console.log("Success:", response);
                 if (response.status) {
-                    brandTable.draw();
-                    $("#deleteBrand").trigger("reset");
+                    productTable.draw();
+                    $("#deleteProduct").trigger("reset");
                     $("#delateModal").modal("hide");
                 }
             },
