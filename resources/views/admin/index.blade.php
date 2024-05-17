@@ -657,6 +657,7 @@ Footcase - Admin
 
   </div>
 </section>
+
 @endsection
 
 @section('script')

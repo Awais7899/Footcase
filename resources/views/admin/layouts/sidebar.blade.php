@@ -1,13 +1,13 @@
  <aside id="sidebar" class="sidebar">
      <ul class="sidebar-nav" id="sidebar-nav">
-         <li class="nav-item">
-             <a class="nav-link " href="{{url('/admin-panel')}}">
+         <li class="nav-item ">
+             <a class="nav-link collapsed" href="{{ url('/admin-panel') }}">
                  <i class="bi bi-grid"></i>
                  <span>Dashboard</span>
              </a>
          </li><!-- End Dashboard Nav -->
          <li class="nav-item">
-             <a class="nav-link collapsed"href="{{url('/admin-panel/products')}}">
+             <a class="nav-link collapsed" href="{{ url('/admin-panel/products') }}">
                  <i class="bi bi-person"></i>
                  <span>Products</span>
              </a>
@@ -17,24 +17,25 @@
           <i class=" bi bi-question-circle"></i>
           <span>Categories</span>
         </a> -->
-             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+             <a class="nav-link collapsed" id='main-category' data-bs-target="#components-nav"
+                 data-bs-toggle="collapse">
                  <i class="bi bi-menu-button-wide"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
              <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                  <li>
-                     <a href="{{url('/admin-panel/categories')}}">
+                     <a href="{{ url('/admin-panel/categories') }}">
                          <i class="bi bi-circle"></i><span>Main Categories</span>
                      </a>
                  </li>
                  <li>
-                     <a href="{{url('/admin-panel/sub_categories')}}">
+                     <a href="{{ url('/admin-panel/sub_categories') }}">
                          <i class="bi bi-circle"></i><span>Sub Categories</span>
                      </a>
                  </li>
              </ul>
          </li><!-- End F.A.Q Page Nav -->
-         <li class="nav-item">
-             <a class="nav-link collapsed" href=" {{ url('/admin-panel/brands') }}">
+         <li class="nav-item  ">
+             <a class="nav-link collapsed" href="{{ url('/admin-panel/brands') }}">
                  <i class=" bi bi-question-circle"></i>
                  <span>Brands</span>
              </a>
@@ -47,8 +48,8 @@
              </a>
          </li><!-- End Contact Page Nav -->
 
-         <li class="nav-item">
-             <a class="nav-link collapsed" href=" {{ url('/admin-panel/users') }}">
+         <li class="nav-item ">
+             <a class="nav-link  collapsed" href="{{ url('/admin-panel/users') }}">
                  <i class="bi bi-box-arrow-in-right"></i>
                  <span>Users</span>
              </a>

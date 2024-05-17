@@ -1,4 +1,42 @@
 $(document).ready(function () {
+    $.fn.dataTable.ext.errMode = "throw";
+    // Iterate through each navigation item
+    $(".sidebar-nav .nav-link").each(function () {
+        // Get the href attribute of the navigation item
+
+        var url = document.location.toString();
+        var href = $(this).attr("href");
+
+        // Check if the path matches the href attribute
+        if (url === href) {
+            // Add 'active' class to the parent li element
+            $(this).removeClass("collapsed");
+        } else {
+            // Add 'not-active' class to the parent li element
+            $(this).addClass("collapsed");
+        }
+    });
+
+    var anchor = $("#components-nav").find("a");
+
+    // Perform actions on the anchor tag
+    anchor.each(function () {
+        // Your code here
+        // For example, add a class to the anchor tag
+        var url = document.location.toString();
+        var href = $(this).attr("href");
+        // Check if the path matches the href attribute
+        if (url === href) {
+            // Add 'active' class to the parent li element
+            $(this).addClass("active");
+            $("#components-nav").addClass("show");
+            $("#main-category").removeClass("collapsed");
+        } else {
+            // Add 'not-active' class to the parent li element
+            $(this).remove("active");
+        }
+    });
+
     /////////////////////////----------- Admin Authentication ----------------////////////////////////////////
     $("#adminLogin").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
@@ -561,4 +599,21 @@ $(document).ready(function () {
             },
         });
     });
+
+    // $(".nav-link").addClass("collapsed");
+
+    // $(".nav-link").on("load", function () {
+    //     // Remove active class from all nav items
+    //     // $(".nav-link").addClass("collapsed");
+    //     // Add active class to the clicked nav item
+    //     $(this).addClass("collapsed");
+    // });
+
+    // // Event listener to hide all collapse elements when a main nav item is clicked
+    // $(".nav-link").click(function () {
+    //     // Remove active class from all nav items
+    //     // $(".nav-link").addClass("collapsed");
+    //     // Add active class to the clicked nav item
+    //     $(this).removeClass("collapsed");
+    // });
 });
