@@ -1,4 +1,6 @@
 @extends('layouts.master')
+
+
 @section('title')
     Footcase
 @endsection
@@ -11,60 +13,60 @@
     <section class="banner-area organic-breadcrumb">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
+                <div class="col-5 ">
                     <h1>Product Details</h1>
-
                 </div>
             </div>
         </div>
     </section>
     <!-- End Banner Area -->
 
+
     <!--================Single Product Area =================-->
-    <div class="product_image_area">
+    <div class="product_image_area section_gap">
         <div class="container">
             <div class="row s_product_inner">
                 <div class="col-lg-6">
-                    <div class="s_Product_carousel">
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                        </div>
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                        </div>
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                        </div>
+                    <div class="single-prd-item">
+                        <img src="{{ asset('uploads/' . $product->product_image) }}" height="450" width="450"
+                            alt="">
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">
                     <div class="s_product_text">
-                        <h3>Faded SkyBlu Denim Jeans</h3>
-                        <h2>$149.99</h2>
+                        <h3>{{ $product->sku }}</h3>
+                        <h5>size: {{ $product->size_no }}</h5>
+                        <h2>Rs. {{ $product->price }}</h2>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
-                            <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                            <li><a class="active"><span>Category</span> : {{ $product->category->title }}</a>
+                            </li>
+                            <li><a class="active"><span>Sub category</span> :
+                                    {{ $product->sub_category->title }}</a>
+                            </li>
+                            <li><a class="active"><span>Brand</span> : {{ $product->brand->title }}</a>
+                            </li>
+
+                            <li><a><span>Availibility</span> :
+                                    {{ $product->quantity > 0 ? 'In Stock' : 'Out of stock' }}</a></li>
                         </ul>
-                        <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking
-                            for
-                            something that can make your interior look awesome, and at the same time give you the pleasant
-                            warm feeling
-                            during the winter.</p>
+                        <p>{{ $product->description }}</p>
                         <div class="product_count">
                             <label for="qty">Quantity:</label>
                             <input type="text" name="qty" id="sst" maxlength="12" value="1"
                                 title="Quantity:" class="input-text qty">
                             <button
-                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                onclick="var result = document.getElementById('sst'); var sst = result.value; var maxQuantity = {{ $product->quantity }}; if( !isNaN( sst ) && sst < maxQuantity) result.value++; return false;"
                                 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
                             <button
                                 onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div>
                         <div class="card_area d-flex align-items-center">
-                            <a class="primary-btn" href="{{ url('shopping-cart') }}">Add to Cart</a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+                            @if ($product->quantity == 0)
+                                <button class="primary-btn" disabled>Add to Cart</button>
+                            @else
+                                <a class="primary-btn" href="{{ url('cart') }}">Add to Cart</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -74,7 +76,7 @@
     <!--================End Single Product Area =================-->
 
     <!--================Product Description Area =================-->
-    <section class="product_description_area">
+    {{-- <section class="product_description_area">
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -438,11 +440,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--================End Product Description Area =================-->
 
     <!-- Start related-product Area -->
-    <section class="related-product-area section_gap_bottom">
+    {{-- <section class="related-product-area section_gap_bottom">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
@@ -576,7 +578,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End related-product Area -->
 
     <!-- End brand Area -->

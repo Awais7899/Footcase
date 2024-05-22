@@ -21,36 +21,29 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Collection</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link">Dress Shoes</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link">Sneakers</a></li>
-                                <li class="nav-item"><a class="nav-link">Loafers</a></li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Hiking Boots</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link">Brogues</a></li>
-                                <li class="nav-item"><a class="nav-link">Flip Flops</a></li>
+                                @foreach (brandsData() as $brand)
+                                    <li class="nav-item"><a class="nav-link">{{ $brand->title }}</a></li>
+                                @endforeach
+
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('contact') }}">Sale</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('contact') }}">Men</a>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Women</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link">History</a></li>
-                                <li class="nav-item"><a class="nav-link">About Us</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('contact') }}">Kids</a>
-                        </li>
-
+                        @if (categoriesData()->isNotEmpty())
+                            @foreach (categoriesData() as $category)
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true"
+                                        aria-expanded="false">{{ $category->title }}</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach ($category->sub_categories as $subCategory)
+                                            <li class="nav-item"><a class="nav-link">{{ $subCategory->title }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">

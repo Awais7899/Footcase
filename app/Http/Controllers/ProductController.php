@@ -90,11 +90,22 @@ class ProductController extends Controller
     }
 
     /**
+     * Display the single product detail.
+     */
+
+    public function singleProduct($id)
+    {
+        $product = Product::with('category', 'sub_category', 'brand')->findOrFail($id);
+        return view('single-product', compact('product'));
+    }
+
+    /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show()
     {
-        //
+        $products = Product::all();
+        return view('index', compact('products'));
     }
 
     /**
@@ -133,7 +144,7 @@ class ProductController extends Controller
             $request->product_image->move(public_path('uploads'), $imageName);
             $product->product_image = $imageName;
         }
-        
+
         if ($product->update()) {
             return response()->json(['status' => true, 'message' => 'Data updated successfully'], 200);
         } else {

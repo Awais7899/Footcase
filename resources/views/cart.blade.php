@@ -11,7 +11,7 @@
     <section class="banner-area organic-breadcrumb">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
+                <div class="col-5">
                     <h1>Shopping Cart</h1>
                 </div>
             </div>

@@ -89,253 +89,32 @@
                 </div>
                 <div class="row">
                     <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p1.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
+
+                    @foreach ($products as $product)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product">
+                                <img class="img-fluid" src="{{ asset('uploads/' . $product->product_image) }}"
+                                    alt="product_image" />
+                                <div class="product-details">
+                                    <h6>{{ $product->sku }}</h6>
+                                    <div class="price">
+                                        <h6>Size: {{ $product->size_no }}</h6>
+                                        <h6>Rs. {{ $product->price }}</h6>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="login.html" target="_blank" class="social-info">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">add to bag</p>
+                                        </a>
+                                        <a href="{{ url('product-detail/' . $product->id) }}" class="social-info">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">view more</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p2.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Sneakers for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p3.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix Canvas</h6>
-                                <div class="price">
-                                    <h6>Rs. 1500.00</h6>
-                                    <h6 class="l-through">Rs. 2500.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p4.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix FUNNY SHOES</h6>
-                                <div class="price">
-                                    <h6>Rs. 1000.00</h6>
-                                    <h6 class="l-through">Rs. 2000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p5.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix Joggs</h6>
-                                <div class="price">
-                                    <h6>Rs. 2500.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p6.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p7.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix JOGGS</h6>
-                                <div class="price">
-                                    <h6>Rs. 1999.00</h6>
-                                    <h6 class="l-through">Rs. 3000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix JOGGS</h6>
-                                <div class="price">
-                                    <h6>Rs. 1999.00</h6>
-                                    <h6 class="l-through">Rs. 3000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -730,7 +509,7 @@
     <!-- End exclusive deal Area -->
 
     <!-- Start brand Area -->
-    <section class="brand-area section_gap">
+    {{-- <section class="brand-area section_gap">
         <div class="container">
             <div class="row">
                 <a class="col single-img" href="#">
@@ -750,7 +529,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End brand Area -->
 @endsection
 @section('script')

@@ -1244,7 +1244,7 @@ h6 {
     top: 20px;
     width: 100%;
 }
-@media (max-width: 991px) {     
+@media (max-width: 991px) {
     .sticky-wrapper {
         top: 0;
     }

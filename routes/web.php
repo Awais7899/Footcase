@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -34,9 +37,19 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/', function () {
-    return view('index');
+
+Route::get('/', [ProductController::class, 'show']);
+Route::get('/product-detail/{id}', [ProductController::class, 'singleProduct']);
+Route::get('/brands/{id}', [BrandController::class, 'show']);
+Route::get('/sub_categories/{id}', [SubCategoryController::class, 'show']);
+
+Route::get('/product-detail', function () {
+    return view('single-product');
 });
+
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::get('/contact',  function () {
     return view('contact');
@@ -45,9 +58,7 @@ Route::get('/contact',  function () {
 Route::get('/category', function () {
     return view('category');
 });
-Route::get('/product-detail', function () {
-    return view('single-product');
-});
+
 Route::get('/cart', function () {
     return view('cart');
 });
