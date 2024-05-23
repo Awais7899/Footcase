@@ -14,6 +14,6 @@ class Brand extends Model
     protected $guarded = [];
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'brands_id', 'id');
     }
 }

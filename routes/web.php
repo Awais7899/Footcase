@@ -43,6 +43,7 @@ Route::get('/product-detail/{id}', [ProductController::class, 'singleProduct']);
 Route::get('/brands/{id}', [BrandController::class, 'show']);
 Route::get('/sub_categories/{id}', [SubCategoryController::class, 'show']);
 
+
 Route::get('/product-detail', function () {
     return view('single-product');
 });
@@ -55,9 +56,9 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 
-Route::get('/category', function () {
-    return view('category');
-});
+// Route::get('/category', function () {
+//     return view('category');
+// });
 
 Route::get('/cart', function () {
     return view('cart');

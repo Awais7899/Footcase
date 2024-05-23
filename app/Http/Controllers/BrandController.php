@@ -58,9 +58,11 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show($id)
     {
-        //
+        $brandsWithProducts = Brand::with('products')->findOrFail($id);
+        // dd($brandsWithProducts);
+        return view('brand', compact('brandsWithProducts'));
     }
 
     /**

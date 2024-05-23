@@ -22,7 +22,8 @@
                                 aria-haspopup="true" aria-expanded="false">Collection</a>
                             <ul class="dropdown-menu">
                                 @foreach (brandsData() as $brand)
-                                    <li class="nav-item"><a class="nav-link">{{ $brand->title }}</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ url('brands/' . $brand->id) }}">{{ $brand->title }}</a></li>
                                 @endforeach
 
                             </ul>
