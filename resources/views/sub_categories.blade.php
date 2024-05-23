@@ -12,7 +12,7 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="margin:16px">
                 <div class="col-5">
-                    <h1> {{ $brandsWithProducts->title }}  Shop </h1>
+                    <h1> {{ $subCategoriesWithProducts->title }}  Shop </h1>
 
                 </div>
             </div>
@@ -28,8 +28,7 @@
                 <section class="lattest-product-area pb-40 category-list">
                     <div class="row">
                         <!-- single product -->
-
-                        @foreach ($brandsWithProducts->products as $product)
+                        @foreach ($subCategoriesWithProducts->products as $product)
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-product">
                                     <img class="img-fluid" src="{{ asset('uploads/' . $product->product_image) }}"

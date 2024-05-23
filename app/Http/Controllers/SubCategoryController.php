@@ -69,9 +69,11 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SubCategory $subCategory)
+    public function show($id)
     {
-        //
+        $subCategoriesWithProducts = SubCategory::with('products')->findOrFail($id);
+        // dd($brandsWithProducts);
+        return view('sub_categories', compact('subCategoriesWithProducts'));
     }
 
     /**

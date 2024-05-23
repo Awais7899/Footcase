@@ -74,4 +74,12 @@ $(document).ready(function () {
             },
         });
     });
+    
+    $(".add-to-cart-btn").on('click', function() {
+        console.log($(this).attr('auth'));
+    });
 });
+
+function checkOnline(auth) {
+    console.log(auth);
+}

@@ -39,7 +39,7 @@
                                         aria-expanded="false">{{ $category->title }}</a>
                                     <ul class="dropdown-menu">
                                         @foreach ($category->sub_categories as $subCategory)
-                                            <li class="nav-item"><a class="nav-link">{{ $subCategory->title }}</a></li>
+                                            <li class="nav-item"><a class="nav-link"  href="{{ url('sub_categories/' . $subCategory->id) }}">{{ $subCategory->title }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>

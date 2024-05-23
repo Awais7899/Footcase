@@ -105,7 +105,8 @@ class ProductController extends Controller
     public function show()
     {
         $products = Product::all();
-        return view('index', compact('products'));
+        $categoriesProduct = Category::with('products')->get();
+        return view('index', compact('products' ,'categoriesProduct' ));
     }
 
     /**
