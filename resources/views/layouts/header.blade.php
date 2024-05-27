@@ -39,7 +39,9 @@
                                         aria-expanded="false">{{ $category->title }}</a>
                                     <ul class="dropdown-menu">
                                         @foreach ($category->sub_categories as $subCategory)
-                                            <li class="nav-item"><a class="nav-link"  href="{{ url('sub_categories/' . $subCategory->id) }}">{{ $subCategory->title }}</a></li>
+                                            <li class="nav-item"><a class="nav-link"
+                                                    href="{{ url('sub_categories/' . $subCategory->id) }}">{{ $subCategory->title }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -51,7 +53,8 @@
                             <a href="{{ url('login') }}" class="cart"><span class="ti-user"></span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('cart') }}" class="cart"><span class="ti-bag"></span></a>
+                            <a href="{{ url('cart') }}"><span class="ti-bag"><span id="cartData"
+                                        class="">{{ cartData() }}</span></span></a>
                         </li>
                         <li class="nav-item">
                             <button class="search">

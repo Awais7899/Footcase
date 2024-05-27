@@ -34,121 +34,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
+                            @foreach ($carts as $cart)
+                                <tr data-cart-id="{{ $cart->id }}">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
                                         </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                    </td>
+                                    <td>
+
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="{{ asset('uploads/' . $cart->product->product_image) }}"
+                                                    height="150" width="150" alt="">
+                                            </div>
+                                            <div class="media-body">
+                                                <p>{{ $cart->product->sku }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
+                                    </td>
+                                    <td>
+                                        <h5>Rs. {{ $cart->product->price }}</h5>
+                                    </td>
+                                    <td class="product">
+                                        <div class="product_count product_qty"
+                                            data-product-quantity="{{ $cart->product->quantity }}">
+                                            <input type="text" name="qty" maxlength="12"
+                                                value="{{ $cart->quantity }}" title="Quantity:" class="input-text">
+                                            <button class="increase items-count" type="button"><i
+                                                    class="lnr lnr-chevron-up"></i></button>
+                                            <button class="reduced items-count" type="button"><i
+                                                    class="lnr lnr-chevron-down"></i></button>
                                         </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <h5 class="price" data-cart-price="{{ $cart->product->price }}">
+                                            Rs.{{ $cart->product->price * $cart->quantity }}</h5>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             <tr class="bottom_button">
                                 <td>
-                                    <a class="gray_btn" href="#">Update Cart</a>
-                                </td>
-                                <td>
 
                                 </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <div class="cupon_text d-flex align-items-center">
-                                        <input type="text" placeholder="Coupon Code">
-                                        <a class="primary-btn" href="#">Apply</a>
-                                        <a class="gray_btn" href="#">Close Coupon</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>
 
                                 </td>
@@ -159,10 +89,20 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>$2160.00</h5>
+                                    @php
+                                        $totalSum = 0; // Initialize total sum variable
+                                    @endphp
+
+                                    @foreach ($carts as $cart)
+                                        @php
+                                            $totalSum += $cart->product->price * $cart->quantity; // Accumulate total sum
+                                        @endphp
+                                    @endforeach
+
+                                    <h5 id="totalSum">Rs.{{ $totalSum }}</h5>
                                 </td>
                             </tr>
-                            <tr class="shipping_area">
+                            {{-- <tr class="shipping_area">
                                 <td>
 
                                 </td>
@@ -195,20 +135,20 @@
                                         <a class="gray_btn" href="#">Update Details</a>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
+
                             <tr class="out_button_area">
                                 <td>
-
+                                    <a class="gray_btn" href="{{ url('/') }}">Continue Shopping</a>
                                 </td>
                                 <td>
-
                                 </td>
                                 <td>
-
                                 </td>
                                 <td>
-                                    <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center justify-content-end">
                                         <a class="primary-btn" href="{{ url('/checkout') }}">Proceed to checkout</a>
                                     </div>
                                 </td>

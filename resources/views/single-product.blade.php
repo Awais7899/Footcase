@@ -58,14 +58,15 @@
                                 onclick="var result = document.getElementById('sst'); var sst = result.value; var maxQuantity = {{ $product->quantity }}; if( !isNaN( sst ) && sst < maxQuantity) result.value++; return false;"
                                 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
                             <button
-                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1 ) result.value--;return false;"
                                 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div>
                         <div class="card_area d-flex align-items-center">
                             @if ($product->quantity == 0)
                                 <button class="primary-btn" disabled>Add to Cart</button>
                             @else
-                                <a class="primary-btn" href="{{ url('cart') }}">Add to Cart</a>
+                                <a class="primary-btn add-to-cart-btn" data-product-id="{{ $product->id }}"
+                                    href="javascript:void(0)">Add to Cart</a>
                             @endif
                         </div>
                     </div>

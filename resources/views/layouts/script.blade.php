@@ -20,4 +20,4 @@
   <script src="{{ asset('js/gmaps.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
 
-  @vite('resources/js/userForm.js');
+  @vite('resources/js/userForm.js')
