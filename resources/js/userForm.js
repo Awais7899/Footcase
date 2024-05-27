@@ -115,7 +115,7 @@ $(document).ready(function () {
         var productQuantity = parseInt(
             row.find(".product_qty").data("product-quantity")
         );
-
+        var cartId = parseInt(row.find(".product").data("cart-id"));
         var productPrice = $(this)
             .closest("tr")
             .find(".price")
@@ -163,12 +163,10 @@ $(document).ready(function () {
 
     $(".form-check  input[type='checkbox']").click(function () {
         var row = $(this).closest("tr");
-
         // Get the product ID from the data attribute of the closest <tr> element
         var cartId = parseInt(row.data("cart-id"));
         // alert(cartId);
         toggleSelected(cartId);
-        
     });
 
     $(".reduced").click(function () {
@@ -196,6 +194,40 @@ $(document).ready(function () {
                 success: function (response) {
                     // Handle success response, such as updating the cart count
                     updateTotalPrice(row, updatedValue.val(), productPrice);
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response
+                    console.error("Error adding product to cart:", error);
+                },
+            });
+        }
+    });
+
+
+
+
+    $("#checkoutForm").submit(function (event) {
+        event.preventDefault();
+
+        if (selectedCarts.length > 0) {
+            $.ajax({
+                url: `/stripe`,
+                method: "POST",
+                data: {
+                    carts: selectedCarts,
+                },
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ), // Include CSRF token in headers
+                },
+                success: function (response) {
+                    // Handle success response, such as updating the cart count
+                    if (response.redirect_url) {
+                        window.location.href = response.redirect_url;
+                    } else {
+                        alert('Failed to initiate checkout process');
+                    }
                 },
                 error: function (xhr, status, error) {
                     // Handle error response

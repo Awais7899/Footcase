@@ -57,7 +57,7 @@
                                     <td>
                                         <h5>Rs. {{ $cart->product->price }}</h5>
                                     </td>
-                                    <td class="product">
+                                    <td class="product"   data-cart-id="{{ $cart->id }}">
                                         <div class="product_count product_qty"
                                             data-product-quantity="{{ $cart->product->quantity }}">
                                             <input type="text" name="qty" maxlength="12"
@@ -102,6 +102,38 @@
                                     <h5 id="totalSum">Rs.{{ $totalSum }}</h5>
                                 </td>
                             </tr>
+                            <tr class="out_button_area">
+                                <td>
+                                    <a class="gray_btn" href="{{ url('/') }}">Continue Shopping</a>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <form method="post" id="checkoutForm">
+                                        @csrf
+                                        <div class="checkout_btn_inner d-flex align-items-center justify-content-end">
+                                            <button type="submit" class="primary-btn border-0">Proceed to checkout</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+@endsection
+@section('script')
+@endsection
+
+
+
                             {{-- <tr class="shipping_area">
                                 <td>
 
@@ -136,30 +168,3 @@
                                     </div>
                                 </td>
                             </tr> --}}
-
-                            <tr class="out_button_area">
-                                <td>
-                                    <a class="gray_btn" href="{{ url('/') }}">Continue Shopping</a>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                    <div class="checkout_btn_inner d-flex align-items-center justify-content-end">
-                                        <a class="primary-btn" href="{{ url('/checkout') }}">Proceed to checkout</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Cart Area =================-->
-@endsection
-@section('script')
-@endsection

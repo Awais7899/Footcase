@@ -40,7 +40,10 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::post('stripe', [StripeController::class, 'index']);
+
+Route::post('/stripe', [StripeController::class, 'index'])->name('stripe');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
 
 Route::get('/', [ProductController::class, 'show']);

@@ -52,8 +52,6 @@ class ProductController extends Controller
         $request->validate([
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
         ]);
-
-
         try {
             $product = new Product();
             $product->sku = $request['sku'];
