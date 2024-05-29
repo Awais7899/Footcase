@@ -57,7 +57,7 @@
                                     <td>
                                         <h5>Rs. {{ $cart->product->price }}</h5>
                                     </td>
-                                    <td class="product"   data-cart-id="{{ $cart->id }}">
+                                    <td class="product" data-cart-id="{{ $cart->id }}">
                                         <div class="product_count product_qty"
                                             data-product-quantity="{{ $cart->product->quantity }}">
                                             <input type="text" name="qty" maxlength="12"
@@ -134,7 +134,7 @@
 
 
 
-                            {{-- <tr class="shipping_area">
+{{-- <tr class="shipping_area">
                                 <td>
 
                                 </td>

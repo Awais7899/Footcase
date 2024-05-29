@@ -29,52 +29,35 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::put('/add-to-cart/{id}', [CartController::class, 'update']);
 });
 
-Route::get('/confirmation', function () {
-    return view('confirmation');
-});
-Route::get('/tracking', function () {
-    return view('tracking');
-});
+Route::get('/confirmation', [StripeController::class, 'confirmation'])->name('confirmation');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+// Route::get('/tracking', function () {
+//     return view('tracking');
+// });
+
+// Route::get('/checkout', function () {
+//     return view('checkout');
+// });
 
 
-Route::post('/stripe', [StripeController::class, 'index'])->name('stripe');
+Route::post('/checkout', [StripeController::class, 'index'])->name('checkout');
 Route::get('/success', [StripeController::class, 'success'])->name('success');
 Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
-
-
 Route::get('/', [ProductController::class, 'show']);
 Route::get('/product-detail/{id}', [ProductController::class, 'singleProduct']);
 Route::get('/brands/{id}', [BrandController::class, 'show']);
 Route::get('/sub_categories/{id}', [SubCategoryController::class, 'show']);
-
-
-// Route::get('/cart', function () {
-//     return view('cart');
-// });
-
 Route::get('/product-detail', function () {
     return view('single-product');
 });
-
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Route::get('/contact',  function () {
     return view('contact');
 });
 
-// Route::get('/category', function () {
-//     return view('category');
-// });
 
 
 // Route::group(['middleware' => 'guest'], function () {
-// Place your authenticated routes here
+// Place your authenticated routes her
 Route::get('/login', [UserController::class, 'Login'])->name('login');
 Route::post('/login', [UserController::class, 'Authenticate']);
 Route::get('/register', [UserController::class, 'Register'])->name('resgiter');

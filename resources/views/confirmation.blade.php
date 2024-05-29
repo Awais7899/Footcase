@@ -7,11 +7,17 @@
 @endsection
 
 @section('content')
+    {{-- {{ print $carts }} --}}
+
+
+
+
+    {{-- {{ print $response }} --}}
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
+                <div class="col-5">
                     <h1>Confirmation</h1>
                 </div>
             </div>
@@ -22,41 +28,43 @@
     <!--================Order Details Area =================-->
     <section class="order_details section_gap">
         <div class="container">
-            <h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+            <h3 class="title_confirmation">Thank you {{ Auth::user()->name }}!. Your order has been confirmed.</h3>
             <div class="row order_d_inner">
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="details_item">
                         <h4>Order Info</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Order number</span> : 60235</a></li>
-                            <li><a href="#"><span>Date</span> : Los Angeles</a></li>
-                            <li><a href="#"><span>Total</span> : USD 2210</a></li>
-                            <li><a href="#"><span>Payment method</span> : Check payments</a></li>
+                            <li><a href="#"><span>Order number</span> : {{ $response->payment_intent }}</a></li>
+                            <li><a href="#"><span>Total</span> : Rs. {{ $response->amount_total / 100 }}</a></li>
+                            <li><a href="#"><span>Payment method</span> : Stripe</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="details_item">
-                        <h4>Billing Address</h4>
+                        <h4>Delivery Address</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Street</span> : 56/8</a></li>
-                            <li><a href="#"><span>City</span> : Los Angeles</a></li>
-                            <li><a href="#"><span>Country</span> : United States</a></li>
-                            <li><a href="#"><span>Postcode </span> : 36952</a></li>
+                            <li><a href="#"><span>Name</span> : {{ $response->customer_details->name }}</a>
+                            </li>
+                            <li><a href="#"><span>Email</span> : {{ $response->customer_details->email }}</a>
+                            </li>
+                            <li><a href="#"><span>Phone no</span> : {{ $response->customer_details->phone }}</a>
+                            </li>
+                            <li><a href="#"><span>Country</span> :
+                                    {{ $response->customer_details->address->city }}</a></li>
+                            <li><a href="#"><span>City</span> :
+                                    {{ $response->customer_details->address->country }}</a>
+                            </li>
+                            <li><a href="#"><span>Address</span> :
+                                    {{ $response->customer_details->address->line1 }}</a>
+                            </li>
+
+                            <li><a href="#"><span>Postcode </span> :
+                                    {{ $response->customer_details->address->postal_code }}</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="details_item">
-                        <h4>Shipping Address</h4>
-                        <ul class="list">
-                            <li><a href="#"><span>Street</span> : 56/8</a></li>
-                            <li><a href="#"><span>City</span> : Los Angeles</a></li>
-                            <li><a href="#"><span>Country</span> : United States</a></li>
-                            <li><a href="#"><span>Postcode </span> : 36952</a></li>
-                        </ul>
-                    </div>
-                </div>
+
             </div>
             <div class="order_details_table">
                 <h2>Order Details</h2>
@@ -70,40 +78,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($carts as $cart)
+                                <tr>
+                                    <td>
+                                        <p>{{ $cart->product->sku }}</p>
+                                    </td>
+                                    <td>
+                                        <h5>x {{ $cart->quantity }}</h5>
+                                    </td>
+                                    <td>
+                                        <p>Rs. {{ $cart->product->price * $cart->quantity }}</p>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <tr>
-                                <td>
-                                    <p>Pixelstore fresh Blackberry</p>
-                                </td>
-                                <td>
-                                    <h5>x 02</h5>
-                                </td>
-                                <td>
-                                    <p>$720.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Pixelstore fresh Blackberry</p>
-                                </td>
-                                <td>
-                                    <h5>x 02</h5>
-                                </td>
-                                <td>
-                                    <p>$720.00</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Pixelstore fresh Blackberry</p>
-                                </td>
-                                <td>
-                                    <h5>x 02</h5>
-                                </td>
-                                <td>
-                                    <p>$720.00</p>
-                                </td>
-                            </tr>
-                            <tr>
+                                @php
+                                    $total = 0;
+                                    foreach ($carts as $cart) {
+                                        $total += $cart->product->price * $cart->quantity;
+                                    }
+                                @endphp
                                 <td>
                                     <h4>Subtotal</h4>
                                 </td>
@@ -111,18 +105,18 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>$2160.00</p>
+                                    <p>Rs. {{ $total }}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <h4>Shipping</h4>
+                                    <h4>Delivery</h4>
                                 </td>
                                 <td>
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>Flat rate: $50.00</p>
+                                    <p>Rs. 0</p>
                                 </td>
                             </tr>
                             <tr>
@@ -133,7 +127,7 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>$2210.00</p>
+                                    <p>Rs. {{ $total }}</p>
                                 </td>
                             </tr>
                         </tbody>

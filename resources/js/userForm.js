@@ -203,15 +203,12 @@ $(document).ready(function () {
         }
     });
 
-
-
-
     $("#checkoutForm").submit(function (event) {
         event.preventDefault();
 
         if (selectedCarts.length > 0) {
             $.ajax({
-                url: `/stripe`,
+                url: `/checkout`,
                 method: "POST",
                 data: {
                     carts: selectedCarts,
@@ -226,7 +223,7 @@ $(document).ready(function () {
                     if (response.redirect_url) {
                         window.location.href = response.redirect_url;
                     } else {
-                        alert('Failed to initiate checkout process');
+                        alert("Failed to initiate checkout process");
                     }
                 },
                 error: function (xhr, status, error) {
@@ -234,6 +231,8 @@ $(document).ready(function () {
                     console.error("Error adding product to cart:", error);
                 },
             });
+        } else {
+            alert("Plese select the item first!");
         }
     });
 });
