@@ -103,7 +103,8 @@
                                     </div>
                                     <div class="prd-bottom">
                                         <a href="javascript:void(0)" class="social-info add-to-cart-btn"
-                                            auth="{{ Auth::check() ? 1 : 0 }}" data-product-id="{{ $product->id }}">
+                                            auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
+                                            data-product-id="{{ $product->id }}">
                                             <span class="ti-bag"></span>
                                             <p class="hover-text">add to bag</p>
                                         </a>

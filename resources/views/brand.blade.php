@@ -12,7 +12,7 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="margin:16px">
                 <div class="col-5">
-                    <h1> {{ $brandsWithProducts->title }}  Shop </h1>
+                    <h1> {{ $brandsWithProducts->title }} Shop </h1>
 
                 </div>
             </div>
@@ -41,7 +41,9 @@
                                             <h6>Rs. {{ $product->price }}</h6>
                                         </div>
                                         <div class="prd-bottom">
-                                            <a href="login.html" target="_blank" class="social-info">
+                                            <a href="javascript:void(0)" class="social-info add-to-cart-btn"
+                                                auth="{{ Auth::check() ? json_encode(Auth::user()) : 'null' }}"
+                                                data-product-id="{{ $product->id }}">
                                                 <span class="ti-bag"></span>
                                                 <p class="hover-text">add to bag</p>
                                             </a>

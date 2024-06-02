@@ -1,6 +1,3 @@
-  <!-- End footer Area -->
-
-
   <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }} "></script>
   <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
@@ -19,5 +16,4 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
   <script src="{{ asset('js/gmaps.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
-
   @vite('resources/js/userForm.js')

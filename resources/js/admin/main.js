@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.warn("vute connected");
     $.fn.dataTable.ext.errMode = "throw";
     // Iterate through each navigation item
     $(".sidebar-nav .nav-link").each(function () {
@@ -38,35 +39,36 @@ $(document).ready(function () {
     });
 
     /////////////////////////----------- Admin Authentication ----------------////////////////////////////////
-    $("#adminLogin").submit(function (event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-        var formData = $(this).serialize();
-        console.log(formData);
-        $.ajax({
-            type: "POST", // Use POST method
-            url: "/admin-panel/login", // Specify the URL of your controller
-            data: formData, // Pass the form data
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
-            },
-            success: function (response) {
-                console.log("Success:", response);
-                if (response.status) {
-                    window.location = response.redirect;
-                } else {
-                    $("#errors-list").append(
-                        "<div class='alert alert-danger'>" +
-                            response.error +
-                            "</div>"
-                    );
-                }
-            },
-            error: function (xhr, status, error) {
-                // Handle errors
-                console.error("Error:", error);
-            },
-        });
-    });
+    // $("#adminLogin").submit(function (event) {
+    //     event.preventDefault(); // Prevent the form from submitting normally
+    //     var formData = $(this).serialize();
+    //     console.log(formData);
+    //     return;
+    //     $.ajax({
+    //         type: "POST", // Use POST method
+    //         url: "/admin-panel/login", // Specify the URL of your controller
+    //         data: formData, // Pass the form data
+    //         headers: {
+    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
+    //         },
+    //         success: function (response) {
+    //             console.log("Success:", response);
+    //             if (response.status) {
+    //                 window.location = response.redirect;
+    //             } else {
+    //                 $("#errors-list").append(
+    //                     "<div class='alert alert-danger'>" +
+    //                         response.error +
+    //                         "</div>"
+    //                 );
+    //             }
+    //         },
+    //         error: function (xhr, status, error) {
+    //             // Handle errors
+    //             console.error("Error:", error);
+    //         },
+    //     });
+    // });
 
     //////////////////---------------- Category Section -----------------------/////////////////////////////
 
@@ -415,6 +417,13 @@ $(document).ready(function () {
     //////////////---------- Usrs Table ------------------/////////////////////////////
 
     $("#user_table").DataTable({
+        language: {
+            lengthMenu: "_MENU_", // Customize the text as per your preference
+            info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text
+        },
+    });
+
+    $("#order_table").DataTable({
         language: {
             lengthMenu: "_MENU_", // Customize the text as per your preference
             info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text

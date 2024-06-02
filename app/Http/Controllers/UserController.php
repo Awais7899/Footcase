@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,6 @@ class UserController extends Controller
                 "error" => "Invalid credentials. Please try again."
             ]);
         }
-
     }
     public function Register()
     {
@@ -56,7 +56,8 @@ class UserController extends Controller
             ]);
         }
         $data = $request->all();
-        User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
@@ -64,10 +65,23 @@ class UserController extends Controller
             'password' => Hash::make($data['password'])
 
         ]);
+        event(new Registered($user));
 
+        $credentials = $request->only('email', 'password');
+        Auth::attempt($credentials);
+        $request->session()->regenerate();
         return response()->json([
             "status" => true,
-            "redirect" => url("login")
+            "redirect" => url("email/verify")
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login')
+            ->withSuccess('You have logged out successfully!');
     }
 }

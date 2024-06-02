@@ -8,10 +8,6 @@
 
 @section('content')
     {{-- {{ print $carts }} --}}
-
-
-
-
     {{-- {{ print $response }} --}}
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">

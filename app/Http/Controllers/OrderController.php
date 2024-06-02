@@ -11,9 +11,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        $orders =  Order::with('customer', 'payment')->get();
+        return view('admin.orders', compact('orders'));
     }
 
     /**

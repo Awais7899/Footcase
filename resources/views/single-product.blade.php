@@ -65,8 +65,9 @@
                             @if ($product->quantity == 0)
                                 <button class="primary-btn" disabled>Add to Cart</button>
                             @else
-                                <a class="primary-btn add-to-cart-btn" data-product-id="{{ $product->id }}"
-                                    href="javascript:void(0)">Add to Cart</a>
+                                <a class="primary-btn add-to-cart-btn"
+                                    auth="{{ Auth::check() ? json_encode(Auth::user()) : 'null' }}"
+                                    data-product-id="{{ $product->id }}" href="javascript:void(0)">Add to Cart</a>
                             @endif
                         </div>
                     </div>

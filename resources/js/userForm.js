@@ -7,7 +7,6 @@ $(document).ready(function () {
 
         // Process form data here (e.g., send it to a server using AJAX)
         // For demonstration purposes, we'll just log the form data
-        console.log(formData);
         // You can add AJAX code here to submit the form data to the server
         $.ajax({
             type: "POST", // Use POST method
@@ -19,7 +18,6 @@ $(document).ready(function () {
             success: function (response) {
                 // Handle the successful response from the server
                 console.log("Success:", response);
-
                 if (response.status) {
                     window.location = response.redirect;
                 } else {
@@ -75,38 +73,79 @@ $(document).ready(function () {
         });
     });
 
+    // $(".add-to-cart-btn").on("click", function () {
+    //     if ($(this).attr("auth") === "0") {
+    //         $("#loginModal").modal("show");
+    //     } else {
+    //         var productId = $(this).data("product-id"); // Assuming you have a data attribute for the product ID
+    //         // Example: You can make an AJAX request to add the product to the cart
+    //         const quantity = $("#sst").val();
+    //         const productQuantity = quantity ? quantity : 1;
+    //         console.warn(productQuantity);
+    //         $.ajax({
+    //             url: "/add-to-cart",
+    //             method: "POST",
+    //             data: {
+    //                 productId: productId,
+    //                 quantity: productQuantity,
+    //             },
+    //             headers: {
+    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+    //                     "content"
+    //                 ), // Include CSRF token in headers
+    //             },
+    //             success: function (response) {
+    //                 // Handle success response, such as updating the cart count
+    //                 console.log(response);
+    //                 $("#cartData").text(response.totalCarts);
+    //                 window.location = "/cart";
+    //             },
+    //             error: function (xhr, status, error) {
+    //                 // Handle error response
+    //                 console.error("Error adding product to cart:", error);
+    //             },
+    //         });
+    //     }
+    // });
+
+    $(".forgot_password").on("click", function () {
+        $("#ForgotPasswordModal").modal("show");
+    });
+
     $(".add-to-cart-btn").on("click", function () {
-        if ($(this).attr("auth") === "0") {
+        var authUser = $(this).attr("auth");
+        if (!authUser) {
             $("#loginModal").modal("show");
         } else {
-            var productId = $(this).data("product-id"); // Assuming you have a data attribute for the product ID
-            // Example: You can make an AJAX request to add the product to the cart
-            const quantity = $("#sst").val();
-            const productQuantity = quantity ? quantity : 1;
-            console.warn(productQuantity);
-            $.ajax({
-                url: "/add-to-cart",
-                method: "POST",
-                data: {
-                    productId: productId,
-                    quantity: productQuantity,
-                },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ), // Include CSRF token in headers
-                },
-                success: function (response) {
-                    // Handle success response, such as updating the cart count
-                    console.log(response);
-                    $("#cartData").text(response.totalCarts);
-                    window.location = "/cart";
-                },
-                error: function (xhr, status, error) {
-                    // Handle error response
-                    console.error("Error adding product to cart:", error);
-                },
-            });
+            authUser = JSON.parse(authUser);
+            if (authUser.email_verified_at) {
+                var productId = $(this).data("product-id");
+                const quantity = $("#sst").val();
+                const productQuantity = quantity ? quantity : 1;
+                $.ajax({
+                    url: "/add-to-cart",
+                    method: "POST",
+                    data: {
+                        productId: productId,
+                        quantity: productQuantity,
+                    },
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $("#cartData").text(response.totalCarts);
+                        window.location = "/cart";
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error adding product to cart:", error);
+                    },
+                });
+            } else {
+                alert("Please verify your email before adding to cart.");
+            }
         }
     });
 

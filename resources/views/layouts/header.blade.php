@@ -47,11 +47,25 @@
                                 </li>
                             @endforeach
                         @endif
+
+                        <li class="nav-item submenu dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false"><span class="ti-user"></span></a>
+                            @if (Auth::check())
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="{{ url('logout') }}">Logout</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="">Profile</a></li>
+                                </ul>
+                            @else
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a></li>
+                        </li>
+                    </ul>
+                    @endif
+                    </li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <a href="{{ url('login') }}" class="cart"><span class="ti-user"></span></a>
-                        </li>
                         <li class="nav-item">
                             <a href="{{ url('cart') }}"><span class="ti-bag"><span id="cartData"
                                         class="">{{ cartData() }}</span></span></a>
