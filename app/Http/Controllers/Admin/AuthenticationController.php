@@ -16,8 +16,9 @@ class AuthenticationController extends Controller
     public function Authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
 
+
+        if (Auth::attempt($credentials)) {
             $user = Auth::user(); // Retrieve the authenticated user
             if ($user->role == 'admin') {
                 // User is an admin, redirect to admin panel

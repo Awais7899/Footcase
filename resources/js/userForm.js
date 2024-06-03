@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    $(".nav-item").click(function () {
+        // Remove active class from all menu items
+        $(".nav-item").removeClass("active");
+
+        $(this).addClass("active");
+    });
+
     $("#registerationForm").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
 

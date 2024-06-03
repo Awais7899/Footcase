@@ -60,17 +60,17 @@
                                     placeholder="Email" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Email'" />
                             </div>
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="password" name="password"
+                            <div class="d-flex col-md-12 form-group align-items-center">
+                                <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Password'" />
                             </div>
-                            <div class="col-md-12 form-group">
+                            {{-- <div class="col-md-12 form-group">
                                 <div class="creat_account">
                                     <input type="checkbox" id="f-option2" name="selector" />
                                     <label for="f-option2">Keep me logged in</label>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="primary-btn">
                                     Log In

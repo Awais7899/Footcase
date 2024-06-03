@@ -27,7 +27,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="edit" enctype="multipart/form-data">
+                    <form method="post" id="addProduct" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <div class='d-flex row'>

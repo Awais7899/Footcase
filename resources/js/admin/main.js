@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.warn("vute connected");
     $.fn.dataTable.ext.errMode = "throw";
     // Iterate through each navigation item
     $(".sidebar-nav .nav-link").each(function () {

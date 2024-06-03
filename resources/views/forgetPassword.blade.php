@@ -42,8 +42,8 @@
                             <form action="{{ route('forget.password.post') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
-                                        Address</label>
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">Email
+                                    </label>
                                     <div class="col-md-6">
                                         <input type="text" id="email_address" class="form-control" name="email"
                                             required autofocus>

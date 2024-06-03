@@ -653,7 +653,7 @@
                             <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
                         </div>
                         <h6>Free Delivery</h6>
-                        <p>Free Shipping on all order</p>
+                        {{-- <p>Free Shipping on all order</p> --}}
                     </div>
                 </div>
                 <!-- single features -->
@@ -663,7 +663,7 @@
                             <img src="{{ asset('img/features/f-icon2.png') }}" alt="" />
                         </div>
                         <h6>Return Policy</h6>
-                        <p>Free Shipping on all order</p>
+                        {{-- <p>Free Shipping on all order</p> --}}
                     </div>
                 </div>
                 <!-- single features -->
@@ -673,7 +673,7 @@
                             <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
                         </div>
                         <h6>24/7 Support</h6>
-                        <p>Free Shipping on all order</p>
+                        {{-- <p>Free Shipping on all order</p> --}}
                     </div>
                 </div>
                 <!-- single features -->
@@ -683,7 +683,7 @@
                             <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
                         </div>
                         <h6>Secure Payment</h6>
-                        <p>Free Shipping on all order</p>
+                        {{-- <p>Free Shipping on all order</p>       --}}
                     </div>
                 </div>
             </div>
@@ -692,7 +692,7 @@
     <!-- end product Area -->
 
     <!-- Start brand Area -->
-    <section class="brand-area section_gap">
+    {{-- <section class="brand-area section_gap">
         <div class="container">
             <div class="row">
                 <a class="col single-img" href="#">
@@ -712,7 +712,7 @@
                 </a>
             </div>
         </div>
-    </section>
+   </section>  --}}
     <!-- End brand Area -->
 @endsection
 @section('script')
