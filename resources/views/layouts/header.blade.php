@@ -29,7 +29,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('contact') }}">Sale</a>
+                                <a class="nav-link" href="{{ url('sale') }}">Sale</a>
                             </li>
                             @if (categoriesData()->isNotEmpty())
                                 @foreach (categoriesData() as $category)
@@ -53,26 +53,28 @@
                                     aria-haspopup="true" aria-expanded="false"><span class="ti-user"></span></a>
                                 @if (Auth::check())
                                     <ul class="dropdown-menu">
+
+                                        <li class="nav-item"><a class="nav-link" href="{{ url('orders') }}">Order
+                                                History</a>
+                                        </li>
                                         <li class="nav-item"><a class="nav-link" href="{{ url('logout') }}">Logout</a>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link" href="">Profile</a></li>
                                     </ul>
                                 @else
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a>
                                         </li>
+                                    </ul>
+                                @endif
                             </li>
-                        </ul>
-                        @endif
-                        </li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item">
                                 <a href="{{ url('cart') }}" class="add_to_cart_container"><span
                                         class="ti-bag"></span>
-                                    @if (isset($cartData))
-                                        <span class="add_to_cart" id="cartData">{{ $cartData }}</span>
+                                    @if (Auth::check())
+                                        <span class="add_to_cart" id="cartData">{{ cartData() }}</span>
                                     @endif
                                 </a>
                             </li>
@@ -88,11 +90,11 @@
         </div>
         <div class="search_input" id="search_input_box">
             <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here" />
-                    <button type="submit" class="btn"></button>
+                <div class="d-flex justify-content-between">
+                    <input type="text" class="form-control" id="search_input"
+                        placeholder="Search by name or price" />
                     <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-                </form>
+                </div>
             </div>
         </div>
     </header>

@@ -1,4 +1,155 @@
 $(document).ready(function () {
+    function loadProducts() {
+        $.ajax({
+            url: "/",
+            type: "GET",
+            success: function (response) {
+                let productHtml = "";
+
+                response.products.forEach((product) => {
+                    productHtml += `
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
+                        <div class="product-details">
+                            <h6>${product.sku}</h6>
+                            <div class="price">
+                                <h6>Size: ${product.size_no}</h6>
+                                <h6>Rs. ${product.price}</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="javascript:void(0)" class="social-info add-to-cart"
+                                    
+                                    data-product-id="${product.id}">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="product-detail/${product.id}" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                });
+                $("#products-container").html(productHtml);
+                // Attach event listeners
+                $(".add-to-cart").on("click", function () {
+                    let authUser = response.user_status;
+
+                    if (!authUser) {
+                        $("#loginModal").modal("show");
+                    } else {
+                        if (authUser.email_verified_at) {
+                            var productId = $(this).data("product-id");
+                            const quantity = $("#sst").val();
+                            const productQuantity = quantity ? quantity : 1;
+                            $.ajax({
+                                url: "/add-to-cart",
+                                method: "POST",
+                                data: {
+                                    productId: productId,
+                                    quantity: productQuantity,
+                                },
+                                headers: {
+                                    "X-CSRF-TOKEN": $(
+                                        'meta[name="csrf-token"]'
+                                    ).attr("content"),
+                                },
+                                success: function (response) {
+                                    console.log(response);
+                                    $("#cartData").text(response.totalCarts);
+                                    window.location = "/cart";
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error(
+                                        "Error adding product to cart:",
+                                        error
+                                    );
+                                },
+                            });
+                        } else {
+                            alert(
+                                "Please verify your email before adding to cart."
+                            );
+                        }
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                console.error(error);
+            },
+        });
+    }
+    // Load products on page load
+    loadProducts();
+
+    // Handle browser back button
+    $(window).on("popstate", function () {
+        loadProducts();
+    });
+
+    // Orders histiry ==============================///////
+
+    $("#users_order").DataTable({
+        language: {
+            lengthMenu: "_MENU_", // Customize the text as per your preference
+            info: "Showing _START_ to _END_ of _TOTAL_ entries", // Optionally, customize other text
+        },
+    });
+
+    $("#search_input").keyup(function () {
+        var query = $(this).val(); // Get the search query from the input field
+
+        // Perform AJAX request only if the query is not empty
+        if (query.trim() !== "") {
+            // Perform AJAX request
+            $.ajax({
+                url: "/search/" + query,
+                type: "GET",
+                success: function (response) {
+                    let productHtml = "";
+
+                    response.forEach((product) => {
+                        productHtml += `
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
+                        <div class="product-details">
+                            <h6>${product.sku}</h6>
+                            <div class="price">
+                                <h6>Size: ${product.size_no}</h6>
+                                <h6>Rs. ${product.price}</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="javascript:void(0)" class="social-info add-to-cart-btn"
+                                    auth="${product.auth}"
+                                    data-product-id="${product.id}">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="product-detail/${product.id}" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    });
+                    $("#products-container").html(productHtml);
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                },
+            });
+        }
+    });
     $(".nav-item").click(function () {
         // Remove active class from all menu items
         $(".nav-item").removeClass("active");
@@ -129,6 +280,7 @@ $(document).ready(function () {
                 var productId = $(this).data("product-id");
                 const quantity = $("#sst").val();
                 const productQuantity = quantity ? quantity : 1;
+
                 $.ajax({
                     url: "/add-to-cart",
                     method: "POST",

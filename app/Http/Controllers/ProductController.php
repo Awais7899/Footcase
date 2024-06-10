@@ -6,7 +6,9 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -67,8 +69,7 @@ class ProductController extends Controller
             $request->product_image->move(public_path('uploads'), $imageName);
             $product->product_image = $imageName;
             if ($product->save()) {
-                // Data saved successfully, return a success response
-
+                // Data saved successfully, return a success respons
                 return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
             } else {
                 // Data saving failed, return an error response
@@ -82,9 +83,13 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function search($query)
     {
-        //
+
+        $results = Product::where('sku', 'like', '%' . $query . '%')
+            ->orWhere('price', 'like', '%' . $query . '%')
+            ->get();
+        return response()->json($results);
     }
 
     /**
@@ -100,19 +105,29 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+
+
+
+    public function show(Request $request)
     {
-        $products = Product::all();
         $categoriesProduct = Category::with('products')->get();
-        return view('index', compact('products' ,'categoriesProduct' ));
+
+        if ($request->ajax()) {
+            $products = Product::all();
+            $user_status = Auth::check() ? Auth::user() : null;
+            return response()->json(['products' => $products, 'user_status' => $user_status]);
+        }
+
+        return view('index', compact('categoriesProduct'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function sale()
     {
-        //
+        $products = Product::where('sale', '1')->get();
+        return view('sale', compact('products'));
     }
 
     /**
@@ -132,7 +147,6 @@ class ProductController extends Controller
         $product->seasonability = $request['seasonability'];
         $product->sale = $request['sale'];
         $product->discount = $request['discount'];
-
         if ($request->has('previuos_image')) {
             $product->product_image = $request['previuos_image'];
         } else {

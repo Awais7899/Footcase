@@ -15,9 +15,6 @@ use Illuminate\Support\Str;
 
 class PasswordRessetController extends Controller
 {
-
-
-
     public function showForgetPasswordForm()
     {
         return view('forgetPassword');

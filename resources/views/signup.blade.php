@@ -109,7 +109,7 @@
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
-
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
 </body>
 
 </html>

@@ -20,24 +20,14 @@
                         <div class="row single-slide align-items-center d-flex">
                             <div class="col-lg-5 col-md-6">
                                 <div class="banner-content">
-                                    <h1>Footcase New <br />Collection!</h1>
+                                    <h1>Comfort and Style Combined</h1>
                                     <p style="color:black">
-                                        Footcase are known for their versatile style that combines
-                                        comfort and fashion. They come in a wide variety of
-                                        designs, colors, and patterns, catering to different
-                                        tastes and preferences. From classic retro styles to
-                                        modern and futuristic designs, sneakers offer a range of
-                                        options to suit various outfits and occasions.
+                                        Step into Luxury with Our Innovative Footwear! Experience Unmatched Comfort and
+                                        Unbeatable Style
                                     </p>
-                                    <div class="add-bag d-flex align-items-center">
-                                        <a class="add-btn" href="{{ url('cart') }}">
-                                            <span class="lnr lnr-cross"></span>
-                                        </a>
-                                        <span class="add-text text-uppercase">Add to Bag</span>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-7">
+                            <div class="col-lg-7" style="height:100vh;display:flex;align-items:center">
                                 <div class="banner-img">
                                     <img class="img-fluid" src="{{ asset('img/banner/banner-img.png') }}" alt="" />
                                 </div>
@@ -47,25 +37,68 @@
                         <div class="row single-slide align-items-center d-flex">
                             <div class="col-lg-5 col-md-6">
                                 <div class="banner-content">
-                                    <h1>Footcase New <br />Collection!</h1>
+                                    <h1>Sustainable Steps</h1>
                                     <p style="color:black">
-                                        Footcase are known for their versatile style that combines
-                                        comfort and fashion. They come in a wide variety of
-                                        designs, colors, and patterns, catering to different
-                                        tastes and preferences. From classic retro styles to
-                                        modern and futuristic designs, sneakers offer a range of
-                                        options to suit various outfits and occasions.
+                                        Walk with Purpose! Join Us in Our Mission for Sustainability with Eco-Friendly
+                                        Footwear
                                     </p>
-                                    <div class="add-bag d-flex align-items-center">
-                                        <a class="add-btn" href="{{ url('cart') }}"><span
-                                                class="lnr lnr-cross"></span></a>
-                                        <span class="add-text text-uppercase">Add to Bag</span>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-7">
+                            <div class="col-lg-7" style="height:100vh;display:flex;align-items:center">
                                 <div class="banner-img">
-                                    <img class="img-fluid" src="{{ asset('img/banner/banner-img.png') }}" alt="" />
+                                    <img class="img-fluid" src="{{ asset('img/banner/banner_image2.png') }}"
+                                        alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row single-slide align-items-center d-flex">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="banner-content">
+                                    <h1>Timeless Elegance</h1>
+                                    <p style="color:black">
+                                        Elevate Your Look with Timeless Elegance! Discover the Perfect Pair to Complete Your
+                                        Style
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-7" style="height:100vh;display:flex;align-items:center">
+                                <div class="banner-img">
+                                    <img class="img-fluid" src="{{ asset('img/banner/banner_image3.png') }}"
+                                        alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row single-slide align-items-center d-flex">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="banner-content">
+                                    <h1>Playful Prints, Happy Feet</h1>
+                                    <p style="color:black">
+                                        Let Their Imagination Run Wild! Find Joyful Prints and Colors in Our Kids' Shoe
+                                        Selection, Made for Adventure
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-7" style="height:100vh;display:flex;align-items:center">
+                                <div class="banner-img">
+                                    <img class="img-fluid" src="{{ asset('img/banner/banner_image4.png') }}"
+                                        alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row single-slide align-items-center d-flex">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="banner-content">
+                                    <h1> Princess Feet</h1>
+                                    <p style="color:black">
+                                        Every Little Girl Deserves to Feel Like a Princess! Explore Our Magical Collection
+                                        of Kids' Shoes
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-7" style="height:100vh;display:flex;align-items:center">
+                                <div class="banner-img">
+                                    <img class="img-fluid" src="{{ asset('img/banner/banner_image5.png') }}"
+                                        alt="" />
                                 </div>
                             </div>
                         </div>
@@ -76,9 +109,10 @@
     </section>
 
 
+
+
     <section class="section_gap">
         <div class="single-product-slider">
-
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
@@ -88,247 +122,60 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- single product -->
-                    @foreach ($products as $product)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('uploads/' . $product->product_image) }}"
-                                    alt="product_image" />
-                                <div class="product-details">
-                                    <h6>{{ $product->sku }}</h6>
-                                    <div class="price">
-                                        <h6>Size: {{ $product->size_no }}</h6>
-                                        <h6>Rs. {{ $product->price }}</h6>
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a href="javascript:void(0)" class="social-info add-to-cart-btn"
-                                            auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
-                                            data-product-id="{{ $product->id }}">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
-                                        <a href="{{ url('product-detail/' . $product->id) }}" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text ">view more</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-
-                    {{-- "Modal " --}}
-
-                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <div class="">
-                                    <button type="button" class="close align-self-end m-2" data-dismiss="modal"
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <div class="login_form_inner">
-                                        <h3>Log in</h3>
-                                        <form class="row login_form" method="post" id="loginForm">
-                                            @csrf
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" class="form-control" id="email" name="email"
-                                                    placeholder="Email" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = 'Email'" />
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" class="form-control" id="password" name="password"
-                                                    placeholder="Password" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = 'Password'" />
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <div class="creat_account">
-                                                    <input type="checkbox" id="f-option2" name="selector" />
-                                                    <label for="f-option2">Keep me logged in</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <button type="submit" value="submit" class="primary-btn">
-                                                    Log In
-                                                </button>
-                                                <a href="">Forgot Password?</a>
-
-                                            </div>
-                                        </form>
-                                        <div class="d-flex row justify-content-center py-2"><span>Don't have a
-                                                account? </span><a href="">
-                                                &nbsp;&nbsp;SignUp</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- single product -->
-
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p5.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p1.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p4.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/features/f-icon3.png') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="products-container">
+                    <!-- Products will be dynamically inserted here -->
                 </div>
             </div>
         </div>
     </section>
+
+
+
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="">
+                    <button type="button" class="close align-self-end m-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="login_form_inner">
+                        <h3>Log in</h3>
+                        <form class="row login_form" method="post" id="loginForm">
+                            @csrf
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="password" name="password"
+                                    placeholder="Password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Password'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <input type="checkbox" id="f-option2" name="selector" />
+                                    <label for="f-option2">Keep me logged in</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" class="primary-btn">
+                                    Log In
+                                </button>
+                                <a href="">Forgot Password?</a>
+
+                            </div>
+                        </form>
+                        <div class="d-flex row justify-content-center py-2"><span>Don't have a
+                                account? </span><a href="">
+                                &nbsp;&nbsp;SignUp</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="owl-carousel active-product-area">
         <!-- single product slide -->
         @foreach ($categoriesProduct as $category)
@@ -358,7 +205,8 @@
                                         </div>
                                         <div class="prd-bottom">
                                             <a href="javascript:void(0)" class="social-info add-to-cart-btn"
-                                                auth="{{ Auth::check() ? 1 : 0 }}">
+                                                auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
+                                                data-product-id="{{ $product->id }}">
                                                 <span class="ti-bag"></span>
                                                 <p class="hover-text">add to bag</p>
                                             </a>
@@ -376,7 +224,7 @@
             </div>
         @endforeach
         <!-- single product slide -->
-        <div class="single-product-slider">
+        {{-- <div class="single-product-slider">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
@@ -637,7 +485,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 
 
@@ -646,44 +494,36 @@
     <section class="features-area section_gap">
         <div class="container">
             <div class="row features-inner">
+
                 <!-- single features -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-features">
-                        <div class="f-icon">
-                            <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
-                        </div>
-                        <h6>Free Delivery</h6>
-                        {{-- <p>Free Shipping on all order</p> --}}
-                    </div>
-                </div>
-                <!-- single features -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-features">
-                        <div class="f-icon">
-                            <img src="{{ asset('img/features/f-icon2.png') }}" alt="" />
-                        </div>
-                        <h6>Return Policy</h6>
-                        {{-- <p>Free Shipping on all order</p> --}}
-                    </div>
-                </div>
-                <!-- single features -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-features">
                         <div class="f-icon">
                             <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
                         </div>
                         <h6>24/7 Support</h6>
-                        {{-- <p>Free Shipping on all order</p> --}}
+                        <p>We're here to help, anytime.</p>
                     </div>
                 </div>
                 <!-- single features -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-features">
+                        <div class="f-icon">
+                            <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
+                        </div>
+                        <h6>Free Delivery</h6>
+                        <p>Free Shipping on all order</p>
+                    </div>
+                </div>
+                <!-- single features -->
+                <!-- single features -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-features">
                         <div class="f-icon">
                             <img src="{{ asset('img/features/f-icon3.png') }}" alt="" />
                         </div>
                         <h6>Secure Payment</h6>
-                        {{-- <p>Free Shipping on all order</p>       --}}
+                        <p>Safe and streamlined transactions.</p>
                     </div>
                 </div>
             </div>

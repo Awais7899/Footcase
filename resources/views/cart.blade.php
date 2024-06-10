@@ -55,7 +55,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h5>Rs. {{ $cart->product->price }}</h5>
+                                        <h5>Rs.
+                                            {{ intVal($cart->product->price) - intVal($cart->product->price) * (intVal($cart->product->discount) / 100) }}
+                                        </h5>
                                     </td>
                                     <td class="product" data-cart-id="{{ $cart->id }}">
                                         <div class="product_count product_qty"
@@ -69,8 +71,11 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h5 class="price" data-cart-price="{{ $cart->product->price }}">
-                                            Rs.{{ $cart->product->price * $cart->quantity }}</h5>
+                                        <h5 class="price" data-cart-price="{{ intVal($cart->product->price) }}">
+                                            Rs.{{ ($cart->product->discount
+                                                ? intval($cart->product->price) - intval($cart->product->price) * (intval($cart->product->discount) / 100)
+                                                : intval($cart->product->price)) * $cart->quantity }}
+                                        </h5>
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,7 +100,12 @@
 
                                     @foreach ($carts as $cart)
                                         @php
-                                            $totalSum += $cart->product->price * $cart->quantity; // Accumulate total sum
+                                            $totalSum +=
+                                                ($cart->product->discount
+                                                    ? intval($cart->product->price) -
+                                                        intval($cart->product->price) *
+                                                            (intval($cart->product->discount) / 100)
+                                                    : intval($cart->product->price)) * $cart->quantity; // Accumulate total sum
                                         @endphp
                                     @endforeach
 

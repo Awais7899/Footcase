@@ -1342,6 +1342,19 @@ h6 {
     margin: 0px;
     background: #fff;
 }
+
+.no-order-text {
+    font-size: 18px;
+    color: #333; /* Adjust color as needed */
+    font-family: Arial, sans-serif; /* Adjust font family as needed */
+    margin: 20px 0px;
+}
+
+.search_button {
+    border: 0px;
+    background: none;
+    color: #fff;
+}
 @media (min-width: 992px) {
     .header_area .navbar .nav .nav-item.submenu ul {
         position: absolute;
@@ -1564,6 +1577,11 @@ h6 {
 .banner-area .active-banner-slider .owl-nav .owl-prev:hover,
 .banner-area .active-banner-slider .owl-nav .owl-next:hover {
     opacity: 1;
+}
+
+.banner-img {
+    display: flex;
+    align-items: center;
 }
 .banner-area .banner-content {
     padding-left: 10px;
@@ -7268,7 +7286,7 @@ label {
 /* End Contact Success and error Area css
 ============================================================================================ */
 .footer-area {
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: #222222;
 }
 .footer-area h6 {
@@ -7421,11 +7439,11 @@ label {
 }
 
 .footer-text {
-    padding-top: 80px;
+    padding-top: 16px;
 }
 @media (max-width: 991px) {
     .footer-text {
-        padding-top: 40px;
+        padding-top: 16px;
     }
 }
 .footer-text a,

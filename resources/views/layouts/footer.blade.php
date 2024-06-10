@@ -1,16 +1,14 @@
     <!-- start footer Area -->
-    <footer class="footer-area ">
+    <footer class="footer-area">
         <div class="container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-footer-widget">
                         <h6>About Us</h6>
                         <p>
-                            Matrix carries its own unique identity, reflecting its core
-                            values, vision, and design philosophy. It sets itself apart
-                            through a combination of innovative designs, attention to
-                            detail, and a distinct aesthetic that resonates with its target
-                            audience.
+                            Footcase has been working in market since last 35 years.We are serving people with the
+                            best quality fine shoes.Today Footcase has its own 2 branches.We believe in customer
+                            satisfaction and provide our customers the best of best .
                         </p>
                     </div>
                 </div>
@@ -19,27 +17,17 @@
                         <h6>Newsletter</h6>
                         <p>Stay update with our latest</p>
                         <div class="" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true"
-                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                method="get" class="form-inline">
+                            <form action="{{ url('new_settler') }}" method="post" class="form-inline">
+                                @csrf
                                 <div class="d-flex flex-row">
-                                    <input class="form-control" name="EMAIL" placeholder="Enter Email"
+                                    <input class="form-control" name="email" placeholder="Enter Email"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
-                                        required="" type="email" />
-
-                                    <button class="click-btn btn btn-default">
+                                        required type="email" />
+                                    <button type="submit" class="click-btn btn btn-default">
                                         <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                     </button>
-                                    <div style="position: absolute; left: -5000px">
-                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1"
-                                            value="" type="text" />
-                                    </div>
-
-                                    <!-- <div class="col-lg-4 col-md-4">
-                                            <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                           </div>  -->
                                 </div>
-                                <div class="info"></div>
+
                             </form>
                         </div>
                     </div>
@@ -75,9 +63,10 @@
             <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
                 <p class="footer-text m-0">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Matrix, From Sole to Soul
-                    <i class="fa fa-heart-o" aria-hidden="true"></i> Be the King of
-                    Style! by <a href="index.html" target="_blank">Zahid Ijaz</a>
+                    Copyright
+                    <i>©</i> 2024
+                    <a href="index.html" target="_blank">DAAZ.</a>
+                    All rights reserved.
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>
