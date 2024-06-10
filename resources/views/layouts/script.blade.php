@@ -10,11 +10,13 @@
   <script src="{{ asset('js/nouislider.min.js') }}"></script>
   <script src="{{ asset('js/countdown.js') }}"></script>
   <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-  <script src="" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  {{-- <script src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
   <!--gmaps Js-->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
   <script src="{{ asset('js/gmaps.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
   @vite('resources/js/userForm.js')
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

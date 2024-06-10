@@ -58,4 +58,8 @@ Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
     Route::post('/products', [ProductController::class, 'create']);
     Route::post('/products/{id}', [ProductController::class, 'update']);
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
+
+
+    Route::get('/logout', [AuthenticationController::class, 'logout']);
 });

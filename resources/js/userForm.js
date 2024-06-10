@@ -19,7 +19,7 @@ $(document).ready(function () {
                             </div>
                             <div class="prd-bottom">
                                 <a href="javascript:void(0)" class="social-info add-to-cart"
-                                    
+
                                     data-product-id="${product.id}">
                                     <span class="ti-bag"></span>
                                     <p class="hover-text">add to bag</p>
@@ -213,9 +213,19 @@ $(document).ready(function () {
             success: function (response) {
                 // Handle the successful response from the server
                 console.log("Success:", response);
+                // Swal.fire({
+                //     title: "The Internet?",
+                //     text: "That thing is still around?",
+                //     icon: "question"
+                //   });
+
+                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+
 
                 if (response.status) {
-                    window.location = response.redirect;
+                    setTimeout(() => {
+                        window.location = response.redirect;
+                    }, 1500);
                 } else {
                     $("#errors-list").append(
                         "<div class='alert alert-danger'>" +

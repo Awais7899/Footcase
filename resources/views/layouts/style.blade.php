@@ -10,3 +10,5 @@
       <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
       <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" />
       <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
