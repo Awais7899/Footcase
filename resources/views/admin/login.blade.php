@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendor/boxicons/css/boxicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
 
@@ -102,11 +102,18 @@
     <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <!-- Template Main JS File -->
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
     @vite('resources/js/admin/main.js')
-
+    @if (session()->has('error'))
+        <script>
+            var error = @json(session()->get('error'));
+            toastr.error(error);
+        </script>
+    @endif
 </body>
 
 </html>

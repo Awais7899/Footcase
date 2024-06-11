@@ -11,7 +11,7 @@ use App\Models\CustomerInfo;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
-// use PDF; 
+// use PDF;
 class StripeController extends Controller
 {
   public function index(Request $request)
@@ -86,7 +86,6 @@ class StripeController extends Controller
       $stripe = new \Stripe\StripeClient(config('stripe.sk'));
       $response = $stripe->checkout->sessions->retrieve($request->session_id);
       $payment = new Payment();
-      $payment->payment_id = intval($response->payment_intent);
       $payment->amount = $response->amount_total / 100;
       $payment->currency = $response->currency;
       $payment->payment_status = $response->payment_status;

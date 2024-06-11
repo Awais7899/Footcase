@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,9 +32,7 @@ Route::post('/admin-panel/login', [AuthenticationController::class, 'Authenticat
 // });
 
 Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::get('/', [DashboardController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'create']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
