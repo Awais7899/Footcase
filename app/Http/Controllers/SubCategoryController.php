@@ -43,9 +43,9 @@ class SubCategoryController extends Controller
         $sub_category->active_status = $request['activeStatus'];
         $sub_category->category_id = $request['category_id'];
         if ($sub_category->save()) {
-            return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
+            return response()->json(['status' => true, 'message' => 'Sub Category saved successfully'], 200);
         } else {
-            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+            return response()->json(['status' => false, 'message' => 'Failed to save Sub Category'], 500);
         }
     }
 

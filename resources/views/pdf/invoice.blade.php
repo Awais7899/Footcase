@@ -71,6 +71,7 @@
                 <th>Quantity</th>
                 <th>Size</th>
                 <th>Unit Price</th>
+
                 <th>Total</th>
             </tr>
         </thead>
@@ -80,8 +81,18 @@
                     <td>{{ $item->product->sku }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->product->size_no }}</td>
-                    <td>{{ $item->product->price }}</td>
-                    <td>{{ $item->quantity * $item->product->price }}</td>
+                    <td>{{ $item->product->discount
+                        ? intval($item->product->price) - intval($item->product->price) * (intval($item->product->discount) / 100)
+                        : intval($item->product->price) }}
+                    </td>
+                    <td>{{ ($item->product->discount
+                        ? intval($item->product->price) - intval($item->product->price) * (intval($item->product->discount) / 100)
+                        : intval($item->product->price)) * $item->quantity }}
+                    </td>
+
+
+
+
                 </tr>
             @endforeach
         </tbody>

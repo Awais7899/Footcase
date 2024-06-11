@@ -40,10 +40,10 @@ class BrandController extends Controller
         if ($brand->save()) {
             // Data saved successfully, return a success response
 
-            return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
+            return response()->json(['status' => true, 'message' => 'Brand saved successfully'], 200);
         } else {
             // Data saving failed, return an error response
-            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+            return response()->json(['status' => false, 'message' => 'Failed to save Brand'], 500);
         }
     }
 
@@ -84,7 +84,7 @@ class BrandController extends Controller
         // Update the category attributes
         $brand->update($request->only('title', 'active_status', 'category_id'));
         // Return a response indicating success
-        return response()->json(['status' => true, 'message' => 'Category updated successfully'], 200);
+        return response()->json(['status' => true, 'message' => 'Brand updated successfully'], 200);
     }
 
     /**
@@ -94,6 +94,6 @@ class BrandController extends Controller
     {
         $brand = Brand::findOrFail($id);
         $brand->delete();
-        return response()->json(['status' => true, 'message' => 'Category deleted successfully'], 200);
+        return response()->json(['status' => true, 'message' => 'Brand deleted successfully'], 200);
     }
 }

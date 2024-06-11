@@ -18,3 +18,4 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://kit.fontawesome.com/087be182aa.js" crossorigin="anonymous"></script>

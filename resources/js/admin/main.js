@@ -117,12 +117,11 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
             },
             success: function (response) {
-                console.log("Success:", response);
-
                 if (response.status) {
                     table.draw();
                     $("#addCategory").trigger("reset");
                     $("#basicModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -150,6 +149,7 @@ $(document).ready(function () {
                     table.draw();
                     $("#editCategory").trigger("reset");
                     $("#categoryEdit").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -175,6 +175,7 @@ $(document).ready(function () {
                     table.draw();
                     $("#deleteCategory").trigger("reset");
                     $("#delateModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -240,6 +241,7 @@ $(document).ready(function () {
                     sub_categories_table.draw();
                     $("#addSubCategory").trigger("reset");
                     $("#basicModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -267,6 +269,7 @@ $(document).ready(function () {
                     sub_categories_table.draw();
                     $("#editSubCategory").trigger("reset");
                     $("#categoryEdit").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -292,6 +295,7 @@ $(document).ready(function () {
                     sub_categories_table.draw();
                     $("#deleteSubCategory").trigger("reset");
                     $("#delateModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -353,6 +357,7 @@ $(document).ready(function () {
                     brandTable.draw();
                     $("#addBrand").trigger("reset");
                     $("#basicModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -380,6 +385,7 @@ $(document).ready(function () {
                     brandTable.draw();
                     $("#editBrand").trigger("reset");
                     $("#categoryEdit").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -404,6 +410,7 @@ $(document).ready(function () {
                     brandTable.draw();
                     $("#deleteBrand").trigger("reset");
                     $("#delateModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -542,6 +549,7 @@ $(document).ready(function () {
                     productTable.draw();
                     $("#addProduct").trigger("reset");
                     $("#fullscreenModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -575,6 +583,7 @@ $(document).ready(function () {
                     productTable.draw();
                     $("#editProduct").trigger("reset");
                     $("#fullscreenModalEditModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -599,6 +608,7 @@ $(document).ready(function () {
                     productTable.draw();
                     $("#deleteProduct").trigger("reset");
                     $("#delateModal").modal("hide");
+                    toastr.success(response.message);
                 }
             },
             error: function (xhr, status, error) {

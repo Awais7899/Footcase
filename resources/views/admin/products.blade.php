@@ -330,7 +330,7 @@
         </div>
     </div>
 
-    <table id="product_table" class="display text-center">
+    <table id="product_table" class="display">
         <thead>
             <tr>
                 <th>No</th>

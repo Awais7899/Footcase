@@ -25,6 +25,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return  response()->json([
                 "status" => true,
+                "success" => "You have login Successfully.",
                 "redirect" => url("/")
             ]);
         } else {
@@ -55,8 +56,8 @@ class UserController extends Controller
                 "errors" => $validator->errors()
             ]);
         }
-        $data = $request->all();
 
+        $data = $request->all();
         $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
@@ -66,7 +67,6 @@ class UserController extends Controller
 
         ]);
         event(new Registered($user));
-
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
@@ -75,7 +75,6 @@ class UserController extends Controller
             "redirect" => url("email/verify")
         ]);
     }
-
     public function logout(Request $request)
     {
         Auth::logout();

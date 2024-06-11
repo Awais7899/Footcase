@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -43,10 +43,6 @@
                         <img class="img-fluid" src="img/login.jpg" alt="" />
                         <div class="hover">
                             <h4>New to our website?</h4>
-                            <p>
-                                There are advances being made in science and technology
-                                everyday, and a good example of this is the
-                            </p>
                             <a class="primary-btn" href="{{ url('register') }}">Create an Account</a>
                         </div>
                     </div>

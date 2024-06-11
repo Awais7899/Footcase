@@ -19,11 +19,18 @@ class StripeController extends Controller
     $carts = Cart::with('product')->whereIn('id', $request['carts'])->get();
     $data = [];
     foreach ($carts as $cart) {
+
+      $total_amount = 0;
+      if ($cart->product->sale === '0') {
+        $total_amount =  $cart->product->price * 100;
+      } else {
+        $total_amount =  ($cart->product->price  - $cart->product->price * ($cart->product->discount / 100)) * 100;
+      };
       $data[] = [
         'price_data' => [
           'currency' => 'pkr',
           'product_data' => ['name' => $cart->product->sku],
-          'unit_amount' => $cart->product->price * 100,
+          'unit_amount' =>   $total_amount,
           'tax_behavior' => 'exclusive',
         ],
         'quantity' => $cart->quantity,

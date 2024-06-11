@@ -11,8 +11,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
+    {{-- <link href="{{ asset('assets / img / favicon . png') }}" rel="icon" /> --}}
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+
     @include('admin.layouts.style')
 
     @yield('css')
@@ -29,10 +31,12 @@
     @include('admin.layouts.script')
 
 
+
+
     @if (session()->has('success'))
         <script>
-            var message = @json(session()->get('success'));
-            toastr.success(message);
+            var success = @json(session()->get('success'));
+            toastr.success(success);
         </script>
     @endif
     @yield('script')

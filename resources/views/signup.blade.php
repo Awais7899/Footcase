@@ -44,8 +44,6 @@
                         <img class="img-fluid" src="img/login.jpg" alt="">
                         <div class="hover">
                             <h4>Already a User?</h4>
-                            <p>There are advances being made in science and technology everyday, and a good example of
-                                this is the</p>
                             <a class="primary-btn" href="{{ url('login') }}" style="color:aliceblue">Sign In</a>
                         </div>
                     </div>

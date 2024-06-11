@@ -83,17 +83,29 @@
                                         <h5>x {{ $cart->quantity }}</h5>
                                     </td>
                                     <td>
-                                        <p>Rs. {{ $cart->product->price * $cart->quantity }}</p>
+                                        <p>Rs.
+                                            {{ ($cart->product->discount
+                                                ? intval($cart->product->price) - intval($cart->product->price) * (intval($cart->product->discount) / 100)
+                                                : intval($cart->product->price)) * $cart->quantity }}
+                                        </p>
                                     </td>
                                 </tr>
                             @endforeach
                             <tr>
                                 @php
-                                    $total = 0;
-                                    foreach ($carts as $cart) {
-                                        $total += $cart->product->price * $cart->quantity;
-                                    }
+                                    $totalSum = 0; // Initialize total sum variable
                                 @endphp
+
+                                @foreach ($carts as $cart)
+                                    @php
+                                        $totalSum +=
+                                            ($cart->product->discount
+                                                ? intval($cart->product->price) -
+                                                    intval($cart->product->price) *
+                                                        (intval($cart->product->discount) / 100)
+                                                : intval($cart->product->price)) * $cart->quantity; // Accumulate total sum
+                                    @endphp
+                                @endforeach
                                 <td>
                                     <h4>Subtotal</h4>
                                 </td>
@@ -101,7 +113,7 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>Rs. {{ $total }}</p>
+                                    <p>Rs. {{ $totalSum }}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -123,13 +135,18 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>Rs. {{ $total }}</p>
+                                    <p>Rs. {{ $totalSum }}</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <div class="d-flex justify-content-end my-3 out_button_area">
+                <a class="gray_btn" href="{{ url('/') }}">Continue Shopping</a>
+            </div>
+
         </div>
     </section>
     <!--================End Order Details Area =================-->

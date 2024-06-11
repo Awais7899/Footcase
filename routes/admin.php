@@ -38,28 +38,20 @@ Route::prefix('admin-panel')->middleware(['admin'])->group(function () {
     Route::post('/categories', [CategoryController::class, 'create']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
-
     Route::get('/sub_categories', [SubCategoryController::class, 'index']);
     Route::post('/sub_categories', [SubCategoryController::class, 'create']);
     Route::put('/sub_categories/{id}', [SubCategoryController::class, 'update']);
     Route::delete('/sub_categories/{id}', [SubCategoryController::class, 'destroy']);
-
     Route::get('/sub_categories/{id}', [SubCategoryController::class, 'subcategoriesOfCategories']);
-
     Route::get('/brands', [BrandController::class, 'index']);
     Route::post('/brands', [BrandController::class, 'create']);
     Route::put('/brands/{id}', [BrandController::class, 'update']);
     Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
-
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/orders', [OrderController::class, 'index']);
-
     Route::get('/products', [ProductController::class, 'index']);
     Route::post('/products', [ProductController::class, 'create']);
     Route::post('/products/{id}', [ProductController::class, 'update']);
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-
-
-
-    Route::get('/logout', [AuthenticationController::class, 'logout']);
+    Route::get('/logout', [AuthenticationController::class, 'logout'])->name(('admin_login'));
 });

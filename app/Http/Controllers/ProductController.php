@@ -70,10 +70,10 @@ class ProductController extends Controller
             $product->product_image = $imageName;
             if ($product->save()) {
                 // Data saved successfully, return a success respons
-                return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
+                return response()->json(['status' => true, 'message' => 'Product saved successfully'], 200);
             } else {
                 // Data saving failed, return an error response
-                return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+                return response()->json(['status' => false, 'message' => 'Failed to save product'], 500);
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -89,7 +89,8 @@ class ProductController extends Controller
         $results = Product::where('sku', 'like', '%' . $query . '%')
             ->orWhere('price', 'like', '%' . $query . '%')
             ->get();
-        return response()->json($results);
+        $user_status = Auth::check() ? Auth::user() : null;
+        return response()->json(['products' => $results, 'user_status' => $user_status]);
     }
 
     /**
@@ -117,7 +118,6 @@ class ProductController extends Controller
             $user_status = Auth::check() ? Auth::user() : null;
             return response()->json(['products' => $products, 'user_status' => $user_status]);
         }
-
         return view('index', compact('categoriesProduct'));
     }
 
@@ -159,10 +159,10 @@ class ProductController extends Controller
         }
 
         if ($product->update()) {
-            return response()->json(['status' => true, 'message' => 'Data updated successfully'], 200);
+            return response()->json(['status' => true, 'message' => 'Product updated successfully'], 200);
         } else {
             // Data saving failed, return an error response
-            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+            return response()->json(['status' => false, 'message' => 'Failed to save product'], 500);
         }
     }
 
@@ -173,6 +173,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return response()->json(['status' => true, 'message' => 'Sub Category deleted successfully'], 200);
+        return response()->json(['status' => true, 'message' => 'Product deleted successfully'], 200);
     }
 }

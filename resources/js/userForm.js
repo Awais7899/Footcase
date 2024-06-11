@@ -5,18 +5,37 @@ $(document).ready(function () {
             type: "GET",
             success: function (response) {
                 let productHtml = "";
-
                 response.products.forEach((product) => {
+                    let priceContent;
+                    if (product.sale === "0") {
+                        priceContent = `
+                         <div class="price">
+                          <h6>Size: ${product.size_no}</h6>
+                          <h6>Price: ${product.price}</h6>
+                          </div>
+                    `;
+                    } else {
+                        priceContent = `
+                <div class="price">
+                  <h6>Size: ${product.size_no}</h6>
+                  </div>
+            <div class="price">
+                <h6>Rs. ${
+                    parseInt(product.price) * (parseInt(product.discount) / 100)
+                }</h6>
+                <h6 class="l-through"> Rs. ${product.price}</h6>
+            </div>
+        `;
+                    }
                     productHtml += `
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
                         <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
                         <div class="product-details">
                             <h6>${product.sku}</h6>
-                            <div class="price">
-                                <h6>Size: ${product.size_no}</h6>
-                                <h6>Rs. ${product.price}</h6>
-                            </div>
+
+                          
+                           ${priceContent}
                             <div class="prd-bottom">
                                 <a href="javascript:void(0)" class="social-info add-to-cart"
 
@@ -34,11 +53,11 @@ $(document).ready(function () {
                 </div>
             `;
                 });
+
                 $("#products-container").html(productHtml);
                 // Attach event listeners
                 $(".add-to-cart").on("click", function () {
                     let authUser = response.user_status;
-
                     if (!authUser) {
                         $("#loginModal").modal("show");
                     } else {
@@ -59,9 +78,17 @@ $(document).ready(function () {
                                     ).attr("content"),
                                 },
                                 success: function (response) {
-                                    console.log(response);
-                                    $("#cartData").text(response.totalCarts);
-                                    window.location = "/cart";
+                                    if (response.status) {
+                                        toastr.success(response.message);
+                                        $("#cartData").text(
+                                            response.totalCarts
+                                        );
+                                        setTimeout(() => {
+                                            window.location = "/cart";
+                                        }, 2000);
+                                    } else {
+                                        toastr.error(response.message);
+                                    }
                                 },
                                 error: function (xhr, status, error) {
                                     console.error(
@@ -112,21 +139,40 @@ $(document).ready(function () {
                 type: "GET",
                 success: function (response) {
                     let productHtml = "";
-
-                    response.forEach((product) => {
+                    response.products.forEach((product) => {
+                        let priceContent;
+                        if (product.sale === "0") {
+                            priceContent = `
+                         <div class="price">
+                          <h6>Size: ${product.size_no}</h6>
+                          <h6>Price: ${product.price}</h6>
+                          </div>
+                    `;
+                        } else {
+                            priceContent = `
+                <div class="price">
+                  <h6>Size: ${product.size_no}</h6>
+                  </div>
+            <div class="price">
+                <h6>Rs. ${
+                    parseInt(product.price) * (parseInt(product.discount) / 100)
+                }</h6>
+                <h6 class="l-through"> Rs. ${product.price}</h6>
+            </div>
+        `;
+                        }
                         productHtml += `
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
                         <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
                         <div class="product-details">
                             <h6>${product.sku}</h6>
-                            <div class="price">
-                                <h6>Size: ${product.size_no}</h6>
-                                <h6>Rs. ${product.price}</h6>
-                            </div>
+
+                          
+                           ${priceContent}
                             <div class="prd-bottom">
-                                <a href="javascript:void(0)" class="social-info add-to-cart-btn"
-                                    auth="${product.auth}"
+                                <a href="javascript:void(0)" class="social-info add-to-cart-search"
+
                                     data-product-id="${product.id}">
                                     <span class="ti-bag"></span>
                                     <p class="hover-text">add to bag</p>
@@ -141,7 +187,56 @@ $(document).ready(function () {
                 </div>
             `;
                     });
+
                     $("#products-container").html(productHtml);
+                    $(".add-to-cart-search").on("click", function () {
+                        let authUser = response.user_status;
+                        if (!authUser) {
+                            $("#loginModal").modal("show");
+                        } else {
+                            if (authUser.email_verified_at) {
+                                var productId = $(this).data("product-id");
+                                const quantity = $("#sst").val();
+                                const productQuantity = quantity ? quantity : 1;
+                                $.ajax({
+                                    url: "/add-to-cart",
+                                    method: "POST",
+                                    data: {
+                                        productId: productId,
+                                        quantity: productQuantity,
+                                    },
+                                    headers: {
+                                        "X-CSRF-TOKEN": $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
+                                    },
+                                    success: function (response) {
+                                        if (response.status) {
+                                            toastr.success(response.message);
+                                            $("#cartData").text(
+                                                response.totalCarts
+                                            );
+                                            setTimeout(() => {
+                                                window.location = "/cart";
+                                            }, 2000);
+                                        } else {
+                                            toastr.error(response.message);
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error(
+                                            "Error adding product to cart:",
+                                            error
+                                        );
+                                    },
+                                });
+                            } else {
+                                alert(
+                                    "Please verify your email before adding to cart."
+                                );
+                            }
+                        }
+                    });
                 },
                 error: function (xhr, status, error) {
                     // Handle errors
@@ -162,6 +257,21 @@ $(document).ready(function () {
 
         // Get form data
         var formData = $(this).serialize();
+
+        var user_name = $("#username").val().trim();
+        var name = $("#name").val().trim();
+        var email = $("#email").val().trim();
+        var password = $("#password").val().trim();
+        // Check if email or password is empty
+        if (
+            user_name === "" ||
+            name === "" ||
+            email === "" ||
+            password === ""
+        ) {
+            toastr.error("Fields cannot be empty.");
+            return; // Exit the function if email or password is empty
+        }
 
         // Process form data here (e.g., send it to a server using AJAX)
         // For demonstration purposes, we'll just log the form data
@@ -196,13 +306,15 @@ $(document).ready(function () {
     $("#loginForm").submit(function (event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
-        // Get form data
+        var email = $("#email").val().trim();
+        var password = $("#password").val().trim();
+        // Check if email or password is empty
+        if (email === "" || password === "") {
+            toastr.error("Email or Password fields cannot be empty.");
+            return; // Exit the function if email or password is empty
+        }
         var formData = $(this).serialize();
 
-        // Process form data here (e.g., send it to a server using AJAX)
-        // For demonstration purposes, we'll just log the form data
-        console.log(formData);
-        // You can add AJAX code here to submit the form data to the server
         $.ajax({
             type: "POST", // Use POST method
             url: "/login", // Specify the URL of your controller
@@ -211,27 +323,13 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Include CSRF token in headers
             },
             success: function (response) {
-                // Handle the successful response from the server
-                console.log("Success:", response);
-                // Swal.fire({
-                //     title: "The Internet?",
-                //     text: "That thing is still around?",
-                //     icon: "question"
-                //   });
-
-                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
-
-
                 if (response.status) {
+                    toastr.success(response.success);
                     setTimeout(() => {
                         window.location = response.redirect;
-                    }, 1500);
+                    }, 2000);
                 } else {
-                    $("#errors-list").append(
-                        "<div class='alert alert-danger'>" +
-                            response.error +
-                            "</div>"
-                    );
+                    toastr.error(response.error);
                 }
             },
             error: function (xhr, status, error) {
@@ -304,9 +402,15 @@ $(document).ready(function () {
                         ),
                     },
                     success: function (response) {
-                        console.log(response);
-                        $("#cartData").text(response.totalCarts);
-                        window.location = "/cart";
+                        if (response.status) {
+                            toastr.success(response.message);
+                            $("#cartData").text(response.totalCarts);
+                            setTimeout(() => {
+                                window.location = "/cart";
+                            }, 2000);
+                        } else {
+                            toastr.error(response.message);
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.error("Error adding product to cart:", error);

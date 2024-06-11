@@ -40,7 +40,7 @@ class CartController extends Controller
                 return response()->json(['status' => true, 'message' => 'Quantity updated successfully', 'totalCarts' => $totalCarts], 200);
             } else {
                 // If increasing quantity exceeds available quantity, return an error response
-                return response()->json(['status' => false, 'message' => 'Quantity exceeds available stock'], 400);
+                return response()->json(['status' => false, 'message' => 'Already added to cart.Quantity exceeds available stock!'], 200);
             }
         } else {
             // If the product is not in the cart, create a new cart item
@@ -50,10 +50,10 @@ class CartController extends Controller
             $cart->quantity = $request['quantity'];
             if ($cart->save()) {
                 $totalCarts = Cart::where('user_id', Auth::user()->id)->count();
-                return response()->json(['status' => true, 'message' => 'Data saved successfully', 'totalCarts' => $totalCarts], 200);
+                return response()->json(['status' => true, 'message' => 'Product added to cart succesfully!.', 'totalCarts' => $totalCarts], 200);
             } else {
                 // Data saving failed, return an error response
-                return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+                return response()->json(['status' => false, 'message' => 'Failed to cart the product'], 200);
             }
         }
     }

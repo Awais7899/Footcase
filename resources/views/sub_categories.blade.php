@@ -35,15 +35,28 @@
                                         alt="product_image" />
                                     <div class="product-details">
                                         <h6>{{ $product->sku }}</h6>
-                                        <div class="price">
-                                            <h6>Size: {{ $product->size_no }}</h6>
-                                            <h6>Rs. {{ $product->price }}</h6>
-                                        </div>
+                                        @if ($product->sale === '0')
+                                            <div class="price">
+                                                <h6>Size: {{ $product->size_no }}</h6>
+                                                <h6>Rs. {{ $product->price }}</h6>
+                                            </div>
+                                        @else
+                                            <div class="price">
+                                                <h6>Size: {{ $product->size_no }}</h6>
+                                            </div>
+                                            <div class="price">
+                                                <h6>Rs.
+                                                    {{ intval($product->price) - intval($product->price) * (intval($product->discount) / 100) }}
+                                                </h6>
+                                                <h6 class="l-through">Rs.
+                                                    {{ intval($product->price) * (intval($product->discount) / 100) }}
+                                                </h6>
+                                            </div>
+                                        @endif
                                         <div class="prd-bottom">
                                             <a href="" class="social-info add-to-cart-btn"
                                                 auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
-                                                data-product-id="{{ $product->id }}"
-                                                >
+                                                data-product-id="{{ $product->id }}">
                                                 <span class="ti-bag"></span>
                                                 <p class="hover-text">add to bag</p>
                                             </a>

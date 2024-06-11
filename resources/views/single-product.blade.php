@@ -36,7 +36,9 @@
                     <div class="s_product_text">
                         <h3>{{ $product->sku }}</h3>
                         <h5>size: {{ $product->size_no }}</h5>
-                        <h2>Rs. {{ $product->price }}</h2>
+                        <h2>Rs.
+                            {{ intVal($product->price) - intVal($product->price) * (intVal($product->discount) / 100) }}
+                        </h2>
                         <ul class="list">
                             <li><a class="active"><span>Category</span> : {{ $product->category->title }}</a>
                             </li>

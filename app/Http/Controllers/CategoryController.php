@@ -39,10 +39,10 @@ class CategoryController extends Controller
         if ($category->save()) {
             // Data saved successfully, return a success response
 
-            return response()->json(['status' => true, 'message' => 'Data saved successfully'], 200);
+            return response()->json(['status' => true, 'message' => 'Category saved successfully'], 200);
         } else {
             // Data saving failed, return an error response
-            return response()->json(['status' => false, 'message' => 'Failed to save data'], 500);
+            return response()->json(['status' => false, 'message' => 'Failed to save Category'], 500);
         }
     }
 

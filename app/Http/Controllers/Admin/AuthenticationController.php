@@ -22,7 +22,7 @@ class AuthenticationController extends Controller
             $user = Auth::user(); // Retrieve the authenticated user
             if ($user->role == 'admin') {
                 // User is an admin, redirect to admin panel
-                return redirect('/admin-panel')->with('success' , "You have successfully login.");
+                return redirect('/admin-panel')->with('success', "You have successfully login.");
             } else {
                 // User is not an admin, redirect with error message
                 return redirect()->back()->with('error', "You don't have permission to access the admin panel.");
@@ -37,7 +37,7 @@ class AuthenticationController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')
-            ->with('success' ,'You have logged out successfully!');
+        return redirect()->route('admin_login')
+            ->with('success', 'You have logged out successfully!');
     }
 }
