@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\NewSettler;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Mail\ProductCreated;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -69,6 +72,16 @@ class ProductController extends Controller
             $request->product_image->move(public_path('uploads'), $imageName);
             $product->product_image = $imageName;
             if ($product->save()) {
+
+                $newSettlers = NewSettler::all();
+                $product = [
+                    'subject' => 'New Product Added: ' . $product->sku,
+                    'body' => 'A new product has been added, please check it out.'
+                ];
+                // Send email to each NewSettler
+                foreach ($newSettlers as $newSettler) {
+                    Mail::to($newSettler->email)->send(new ProductCreated($product));
+                }
                 // Data saved successfully, return a success respons
                 return response()->json(['status' => true, 'message' => 'Product saved successfully'], 200);
             } else {
@@ -112,8 +125,7 @@ class ProductController extends Controller
     public function show(Request $request)
     {
         $categoriesProduct = Category::with('products')->get();
-
-        if ($request->ajax()) {
+        if ($request->loadData) {
             $products = Product::all();
             $user_status = Auth::check() ? Auth::user() : null;
             return response()->json(['products' => $products, 'user_status' => $user_status]);

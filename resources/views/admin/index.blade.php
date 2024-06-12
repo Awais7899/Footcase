@@ -8,32 +8,65 @@
 @endsection
 
 @section('content')
-    <div class="pagetitle">
+    <div class="pagetitle d-flex justify-content-between align-items-center my-4">
         <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
+        <form action="{{ route('report_generate') }}" method="POST">
+            @csrf
+            <button class="btn btn-primary">Generate Report</button>
+        </form>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
         <div class="row">
-
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
+                    <!-- Customers Card -->
+                    <div class="col-xxl-4 col-xl-5">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Customers</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ $users }}</h6> <span class="text-muted small pt-2 ps-1">Total
+                                            Users</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- End Customers Card -->
+
 
                     <!-- Sales Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-xxl-4 col-md-7">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>Rs. {{ $orders->sum('total') }}</h6>
+                                        <span class="text-muted small pt-2 ps-1">Total Sale</span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Sales Card -->
+
+                    {{-- Orders Cart --}}
+                    <div class="col-xxl-4 col-md-5">
                         <div class="card info-card sales-card">
-
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Orders</h5>
-
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
@@ -47,23 +80,18 @@
                             </div>
 
                         </div>
-                    </div><!-- End Sales Card -->
-
+                    </div><!-- End Customers Card -->
                     <!-- Revenue Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-xxl-4 col-md-7">
                         <div class="card info-card revenue-card">
-
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Revenue</h5>
-
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>${{ $orders->sum('total') }}</h6>
+                                        <h6>Rs. {{ intVal($orders->sum('total')) * (15 / 100) }}</h6>
                                         <span class="text-muted small pt-2 ps-1">Total Revenue</span>
 
                                     </div>
@@ -73,57 +101,33 @@
                         </div>
                     </div><!-- End Revenue Card -->
 
-                    <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-12">
 
-                        <div class="card info-card customers-card">
-
-
-
-                            <div class="card-body">
-                                <h5 class="card-title">Customers</h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>{{ $users }}</h6> <span class="text-muted small pt-2 ps-1">Total
-                                            Users</span>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
 
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">
-
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Reports</h5>
-
                                 <!-- Line Chart -->
                                 <div id="reportsChart"></div>
-
                                 <script>
+                                    var monthlyTotals = {!! json_encode($monthlyTotals) !!};
+                                    var monthLabels = {!! json_encode($monthLabels) !!};
+
+                                    var monthlyUserCounts = {!! json_encode($monthlyUserCounts) !!};
+
+
                                     document.addEventListener("DOMContentLoaded", () => {
                                         new ApexCharts(document.querySelector("#reportsChart"), {
                                             series: [{
-                                                name: 'Sales',
-                                                data: [31, 40, 28, 51, 42, 82, 56],
-                                            }, {
-                                                name: 'Revenue',
-                                                data: [11, 32, 45, 32, 34, 52, 41]
-                                            }, {
-                                                name: 'Customers',
-                                                data: [15, 11, 32, 18, 9, 24, 11]
-                                            }],
+                                                    name: 'Sales',
+                                                    data: monthlyTotals
+                                                },
+                                                {
+                                                    name: 'Customers',
+                                                    data: monthlyUserCounts
+                                                }
+                                            ],
                                             chart: {
                                                 height: 350,
                                                 type: 'area',
@@ -134,7 +138,7 @@
                                             markers: {
                                                 size: 4
                                             },
-                                            colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                            colors: ['#ff771d', '#2eca6a'],
                                             fill: {
                                                 type: "gradient",
                                                 gradient: {
@@ -153,11 +157,7 @@
                                             },
                                             xaxis: {
                                                 type: 'datetime',
-                                                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z",
-                                                    "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"
-                                                ]
+                                                categories: monthLabels
                                             },
                                             tooltip: {
                                                 x: {
@@ -168,90 +168,39 @@
                                     });
                                 </script>
                                 <!-- End Line Chart -->
-
                             </div>
 
                         </div>
                     </div><!-- End Reports -->
                 </div>
             </div><!-- End Left side columns -->
-
             <!-- Right side columns -->
             <div class="col-lg-4">
-
                 <!-- Recent Activity -->
                 <div class="card">
-
-
                     <div class="card-body">
                         <h5 class="card-title">Recent Activity</h5>
-
                         <div class="activity">
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">32 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                <div class="activity-content">
-                                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a>
-                                    beatae
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">56 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                <div class="activity-content">
-                                    Voluptatem blanditiis blanditiis eveniet
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">2 hrs</div>
-                                <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                <div class="activity-content">
-                                    Voluptates corrupti molestias voluptatem
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">1 day</div>
-                                <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                                <div class="activity-content">
-                                    Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati
-                                        voluptatem</a> tempore
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">2 days</div>
-                                <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                <div class="activity-content">
-                                    Est sit eum reiciendis exercitationem
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">4 weeks</div>
-                                <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                <div class="activity-content">
-                                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                                </div>
-                            </div><!-- End activity item-->
-
+                            @foreach ($login_activities as $login_activity)
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">
+                                        {{ $login_activity->created_at->diffForHumans() }}</div>
+                                    <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                    <div class="activity-content">
+                                        {{ $login_activity->user->email }}
+                                    </div>
+                                </div><!-- End activity item-->
+                            @endforeach
                         </div>
 
                     </div>
                 </div><!-- End Recent Activity -->
 
-                <!-- Budget Report -->
+                {{-- <!-- Budget Report -->
                 <div class="card">
-
-
                     <div class="card-body pb-0">
                         <h5 class="card-title">Budget Report</h5>
-
                         <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
@@ -304,7 +253,7 @@
                         </script>
 
                     </div>
-                </div><!-- End Budget Report -->
+                </div><!-- End Budget Report --> --}}
 
             </div><!-- End Right side columns -->
 

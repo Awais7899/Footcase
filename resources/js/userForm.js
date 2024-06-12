@@ -1,124 +1,4 @@
 $(document).ready(function () {
-    function loadProducts() {
-        $.ajax({
-            url: "/",
-            type: "GET",
-            success: function (response) {
-                let productHtml = "";
-                response.products.forEach((product) => {
-                    let priceContent;
-                    if (product.sale === "0") {
-                        priceContent = `
-                         <div class="price">
-                          <h6>Size: ${product.size_no}</h6>
-                          <h6>Price: ${product.price}</h6>
-                          </div>
-                    `;
-                    } else {
-                        priceContent = `
-                <div class="price">
-                  <h6>Size: ${product.size_no}</h6>
-                  </div>
-            <div class="price">
-                <h6>Rs. ${
-                    parseInt(product.price) * (parseInt(product.discount) / 100)
-                }</h6>
-                <h6 class="l-through"> Rs. ${product.price}</h6>
-            </div>
-        `;
-                    }
-                    productHtml += `
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
-                        <div class="product-details">
-                            <h6>${product.sku}</h6>
-
-                          
-                           ${priceContent}
-                            <div class="prd-bottom">
-                                <a href="javascript:void(0)" class="social-info add-to-cart"
-
-                                    data-product-id="${product.id}">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="product-detail/${product.id}" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-                });
-
-                $("#products-container").html(productHtml);
-                // Attach event listeners
-                $(".add-to-cart").on("click", function () {
-                    let authUser = response.user_status;
-                    if (!authUser) {
-                        $("#loginModal").modal("show");
-                    } else {
-                        if (authUser.email_verified_at) {
-                            var productId = $(this).data("product-id");
-                            const quantity = $("#sst").val();
-                            const productQuantity = quantity ? quantity : 1;
-                            $.ajax({
-                                url: "/add-to-cart",
-                                method: "POST",
-                                data: {
-                                    productId: productId,
-                                    quantity: productQuantity,
-                                },
-                                headers: {
-                                    "X-CSRF-TOKEN": $(
-                                        'meta[name="csrf-token"]'
-                                    ).attr("content"),
-                                },
-                                success: function (response) {
-                                    if (response.status) {
-                                        toastr.success(response.message);
-                                        $("#cartData").text(
-                                            response.totalCarts
-                                        );
-                                        setTimeout(() => {
-                                            window.location = "/cart";
-                                        }, 2000);
-                                    } else {
-                                        toastr.error(response.message);
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error(
-                                        "Error adding product to cart:",
-                                        error
-                                    );
-                                },
-                            });
-                        } else {
-                            alert(
-                                "Please verify your email before adding to cart."
-                            );
-                        }
-                    }
-                });
-            },
-            error: function (xhr, status, error) {
-                // Handle errors
-                console.error(error);
-            },
-        });
-    }
-    // Load products on page load
-    loadProducts();
-
-    // Handle browser back button
-    $(window).on("popstate", function () {
-        loadProducts();
-    });
-
     // Orders histiry ==============================///////
 
     $("#users_order").DataTable({
@@ -130,7 +10,6 @@ $(document).ready(function () {
 
     $("#search_input").keyup(function () {
         var query = $(this).val(); // Get the search query from the input field
-
         // Perform AJAX request only if the query is not empty
         if (query.trim() !== "") {
             // Perform AJAX request
@@ -380,6 +259,8 @@ $(document).ready(function () {
 
     $(".add-to-cart-btn").on("click", function () {
         var authUser = $(this).attr("auth");
+
+        console.warn("authUser", authUser);
         if (!authUser) {
             $("#loginModal").modal("show");
         } else {
@@ -544,7 +425,7 @@ $(document).ready(function () {
                 },
             });
         } else {
-            alert("Plese select the item first!");
+            toastr.error("Plese select the item first!");
         }
     });
 });

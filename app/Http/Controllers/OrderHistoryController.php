@@ -11,11 +11,7 @@ class OrderHistoryController extends Controller
 {
     public function ordersHistory()
     {
-        $user = Auth::user();
-        // Retrieve orders for the user along with their associated customers
-        $orders = Order::with(['customer' => function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        }])->get();
+        $orders = Auth::user()->orders;
         return view('orders', compact('orders'));
     }
 }

@@ -39,6 +39,13 @@
             toastr.success(success);
         </script>
     @endif
+
+    @if (session()->has('error'))
+        <script>
+            var error = @json(session()->get('error'));
+            toastr.error(error);
+        </script>
+    @endif
     @yield('script')
 </body>
 

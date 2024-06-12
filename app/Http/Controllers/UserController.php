@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginActivity;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -23,6 +24,9 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            $login_activity = new LoginActivity();
+            $login_activity->user_id = Auth::user()->id;
+            $login_activity->save();
             return  response()->json([
                 "status" => true,
                 "success" => "You have login Successfully.",
@@ -74,6 +78,11 @@ class UserController extends Controller
             "status" => true,
             "redirect" => url("email/verify")
         ]);
+    }
+
+    public function profile()
+    {
+        return view('profile');
     }
     public function logout(Request $request)
     {

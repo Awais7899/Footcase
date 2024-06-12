@@ -17,6 +17,6 @@
   <script src="{{ asset('js/gmaps.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-  @vite('resources/js/userForm.js')
+   @vite('resources/js/userForm.js')
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

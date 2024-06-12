@@ -53,6 +53,8 @@
                                     aria-haspopup="true" aria-expanded="false"><span class="ti-user"></span></a>
                                 @if (Auth::check())
                                     <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="{{ url('profile') }}">Profile</a>
+                                        </li>
 
                                         <li class="nav-item"><a class="nav-link" href="{{ url('orders') }}">Order
                                                 History</a>
@@ -67,14 +69,13 @@
                                     </ul>
                                 @endif
                             </li>
-
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item">
-                                <a href="{{ url('cart') }}" class="add_to_cart_container"><span
-                                        class="ti-bag"></span>
+                                <a href="{{ url('cart') }}" class="add_to_cart_container">
+                                    <span class="ti-bag"></span>
                                     @if (Auth::check())
-                                        <span class="add_to_cart" id="cartData">{{ cartData() }}</span>
+                                        <sup class="add_to_cart" id="cartData">{{ cartData() }}</sup>
                                     @endif
                                 </a>
                             </li>

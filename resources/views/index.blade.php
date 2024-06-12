@@ -130,7 +130,333 @@
     </section>
 
 
+    <section class="owl-carousel active-product-area">
+        <!-- single product slide -->
+        @foreach ($categoriesProduct as $category)
+            <div class="single-product-slider">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 text-center">
+                            <div class="section-title">
+                                <h1>{{ $category->title }} Footwear</h1>
+                                <p>Matrix, From Sole to Soul, Be the King of Style!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- single product -->
 
+                        @foreach ($category->products as $product)
+                            <div class="col-lg-3 col-md-6">
+                                <div class="single-product">
+                                    <img class="img-fluid" src="{{ asset('uploads/' . $product->product_image) }}"
+                                        alt="product_image" />
+                                    <div class="product-details">
+                                        <h6>{{ $product->sku }}</h6>
+
+                                        @if ($product->sale === '0')
+                                            <div class="price">
+                                                <h6>Size: {{ $product->size_no }}</h6>
+                                                <h6>Rs. {{ $product->price }}</h6>
+                                            </div>
+                                        @else
+                                            <div class="price">
+                                                <h6>Size: {{ $product->size_no }}</h6>
+                                            </div>
+                                            <div class="price">
+                                                <h6>Rs.
+                                                    {{ intval($product->price) - intval($product->price) * (intval($product->discount) / 100) }}
+                                                </h6>
+                                                <h6 class="l-through">Rs.
+                                                    {{ intval($product->price) * (intval($product->discount) / 100) }}
+                                                </h6>
+                                            </div>
+                                        @endif
+
+                                        <div class="prd-bottom">
+                                            <a href="javascript:void(0)" class="social-info add-to-cart-btn"
+                                                auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
+                                                data-product-id="{{ $product->id }}">
+                                                <span class="ti-bag"></span>
+                                                <p class="hover-text">add to bag</p>
+                                            </a>
+                                            <a href="{{ url('product-detail/' . $product->id) }}" class="social-info">
+                                                <span class="lnr lnr-move"></span>
+                                                <p class="hover-text">view more</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <!-- single product slide -->
+        {{-- <div class="single-product-slider">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="section-title">
+                            <h1>Coming Products</h1>
+                            <p>Matrix, From Sole to Soul, Be the King of Style!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p6.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p3.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p5.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p1.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p4.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/features/f-icon3.png') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single product -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
+                            <div class="product-details">
+                                <h6>Matrix New Hammer sole for Sports person</h6>
+                                <div class="price">
+                                    <h6>Rs. 2999.00</h6>
+                                    <h6 class="l-through">Rs. 5000.00</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="login.html" target="_blank" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+    </section>
 
 
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -154,12 +480,6 @@
                                 <input type="text" class="form-control" id="password" name="password"
                                     placeholder="Password" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Password'" />
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <div class="creat_account">
-                                    <input type="checkbox" id="f-option2" name="selector" />
-                                    <label for="f-option2">Keep me logged in</label>
-                                </div>
                             </div>
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="primary-btn">
@@ -246,4 +566,121 @@
     <!-- End brand Area -->
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('dashboard') }}",
+                type: "GET",
+                    data: {
+                        loadData: 'loadData'
+                    },
+                success: function(response) {
+                    console.log(response);
+                    let productHtml = "";
+                    response.products.forEach((product) => {
+                        let priceContent;
+                        if (product.sale === "0") {
+                            priceContent = `
+                         <div class="price">
+                          <h6>Size: ${product.size_no}</h6>
+                          <h6>Price: ${product.price}</h6>
+                          </div>
+                    `;
+                        } else {
+                            priceContent = `
+                <div class="price">
+                  <h6>Size: ${product.size_no}</h6>
+                  </div>
+            <div class="price">
+                <h6>Rs. ${
+                    parseInt(product.price) * (parseInt(product.discount) / 100)
+                }</h6>
+                <h6 class="l-through"> Rs. ${product.price}</h6>
+            </div>
+        `;
+                        }
+                        productHtml += `
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="uploads/${product.product_image}" alt="${product.product_image}" />
+                        <div class="product-details">
+                            <h6>${product.sku}</h6>
+
+                          
+                           ${priceContent}
+                            <div class="prd-bottom">
+                                <a href="javascript:void(0)" class="social-info add-to-cart"
+
+                                    data-product-id="${product.id}">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="product-detail/${product.id}" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    });
+
+                    $("#products-container").html(productHtml);
+                    // Attach event listeners
+                    $(".add-to-cart").on("click", function() {
+                        let authUser = response.user_status;
+                        if (!authUser) {
+                            $("#loginModal").modal("show");
+                        } else {
+                            if (authUser.email_verified_at) {
+                                var productId = $(this).data("product-id");
+                                const quantity = $("#sst").val();
+                                const productQuantity = quantity ? quantity : 1;
+                                $.ajax({
+                                    url: "/add-to-cart",
+                                    method: "POST",
+                                    data: {
+                                        productId: productId,
+                                        quantity: productQuantity,
+                                    },
+                                    headers: {
+                                        "X-CSRF-TOKEN": $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
+                                    },
+                                    success: function(response) {
+                                        if (response.status) {
+                                            toastr.success(response.message);
+                                            $("#cartData").text(response
+                                                .totalCarts);
+                                            setTimeout(() => {
+                                                window.location = "/cart";
+                                            }, 2000);
+                                        } else {
+                                            toastr.error(response.message);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            "Error adding product to cart:",
+                                            error
+                                        );
+                                    },
+                                });
+                            } else {
+                                alert(
+                                    "Please verify your email before adding to cart."
+                                );
+                            }
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                },
+            });
+        });
+    </script>
 @endsection

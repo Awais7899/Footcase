@@ -851,7 +851,7 @@ h6 {
     width: 4px;
     top: 0;
     bottom: 0;
-    background-color: #eceefe;
+    /* background-color: #eceefe; */
 }
 
 .dashboard .activity .activity-item .activity-badge {

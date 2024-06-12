@@ -106,6 +106,7 @@ class StripeController extends Controller
       $order->customer_info_id   = $customerInfo->id;
       $order->payment_id = $payment->id;
       $order->total = $response->amount_total / 100;
+      $order->user_id = Auth::user()->id;
       $order->save();
       $carts = session()->get('carts');
       foreach ($carts as $cart) {

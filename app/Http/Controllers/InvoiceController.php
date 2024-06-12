@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Illuminate\Http\Request;
-use Stripe\Customer;
 use PDF;
 
 class InvoiceController extends Controller
@@ -15,7 +13,6 @@ class InvoiceController extends Controller
 
 
         $order = Order::findOrFail($id);
-
         // Load the related order items and customer
         $order->load('orderItems.product', 'customer');
 
