@@ -52,10 +52,11 @@
                         <h6>Follow Us</h6>
                         <p>Let us be social</p>
                         <div class="footer-social d-flex align-items-center">
-                            <a href="login.html" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="login.html" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="login.html" target="_blank"><i class="fa fa-dribbble"></i></a>
-                            <a href="login.html" target="_blank"><i class="fa fa-behance"></i></a>
+                            <a href="https://www.instagram.com/footcasepk?igsh=cjRvbm8wM3VvYzJp&utm_source=qr"
+                                target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100095411535989&mibextid=LQQJ4d"
+                                target="_blank"><i class="fa fa-facebook"></i></a>
+
                         </div>
                     </div>
                 </div>
@@ -65,7 +66,7 @@
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright
                     <i>©</i> 2024
-                    <a href="index.html" target="_blank">DAAZ.</a>
+                    <a href="#">DAAZ.</a>
                     All rights reserved.
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>

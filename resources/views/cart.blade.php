@@ -31,6 +31,7 @@
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,6 +78,15 @@
                                                 : intval($cart->product->price)) * $cart->quantity }}
                                         </h5>
                                     </td>
+                                    <td>
+                                        <form action="{{ route('delete_cart', ['id' => $cart->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="border:none">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -111,10 +121,13 @@
 
                                     <h5 id="totalSum">Rs.{{ $totalSum }}</h5>
                                 </td>
+                                <td></td>
                             </tr>
                             <tr class="out_button_area">
                                 <td>
                                     <a class="gray_btn" href="{{ url('/') }}">Continue Shopping</a>
+                                </td>
+                                <td>
                                 </td>
                                 <td>
                                 </td>

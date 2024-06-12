@@ -31,6 +31,7 @@ require __DIR__ . '/admin.php';
 Route::group(['middleware' => ['auth', 'user', 'verified']], function () {
     // Place your authenticated routes here
     Route::get('/cart', [CartController::class, 'index']);
+    Route::delete('/delete-cart/{id}', [CartController::class, 'delete'])->name('delete_cart');
     Route::post('/add-to-cart', [CartController::class, 'create']);
     Route::put('/add-to-cart/{id}', [CartController::class, 'update']);
     Route::get('/confirmation', [StripeController::class, 'confirmation'])->name('confirmation');
@@ -42,7 +43,6 @@ Route::group(['middleware' => ['auth', 'user', 'verified']], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 // profile
-
 
 Route::get('/', [ProductController::class, 'show'])->name('dashboard');
 Route::get('/search/{query}', [ProductController::class, 'search'])->name('search');

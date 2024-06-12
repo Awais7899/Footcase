@@ -16,6 +16,7 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::with('product')->where('user_id', Auth::user()->id)->get();
+
         return view('cart', compact("carts"));
     }
 
@@ -24,11 +25,9 @@ class CartController extends Controller
      */
     public function create(Request $request)
     {
-
         $existingCart = Cart::where('user_id', Auth::user()->id)
             ->where('product_id', $request['productId'])
             ->first();
-
         if ($existingCart) {
             // Check if increasing the quantity exceeds the available quantity in the products table
             $product = Product::find($request['productId']);
@@ -57,7 +56,6 @@ class CartController extends Controller
             }
         }
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -87,8 +85,6 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $cart = Cart::findOrFail($id);
         $cart->quantity = $request['quantity'];
         if ($cart->update()) {
@@ -102,8 +98,19 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $cart)
+    public function delete($id)
     {
-        //
+        // Find the cart item by ID
+        $cartItem = Cart::find($id);
+
+        // Check if the cart item exists
+        if ($cartItem) {
+            // Delete the cart item
+            $cartItem->delete();
+            return redirect()->back()->with('success', 'Cart item deleted successfully');
+        } else {
+            // Cart item not found
+            return redirect()->back()->with('error', 'Cart item not found');
+        }
     }
 }

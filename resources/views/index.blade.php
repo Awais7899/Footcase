@@ -1,11 +1,7 @@
 @extends('layouts.master')
-
-
-
 @section('title')
     Footcase
 @endsection
-
 @section('css')
 @endsection
 
@@ -571,9 +567,9 @@
             $.ajax({
                 url: "{{ route('dashboard') }}",
                 type: "GET",
-                    data: {
-                        loadData: 'loadData'
-                    },
+                data: {
+                    loadData: 'loadData'
+                },
                 success: function(response) {
                     console.log(response);
                     let productHtml = "";

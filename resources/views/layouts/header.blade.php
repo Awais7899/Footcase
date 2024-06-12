@@ -2,8 +2,8 @@
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light main_box">
                 <div class="container">
-                    <a class="navbar-brand logo_h" href="{{ url('/') }}"><img width="180px" height="70px"
-                            src="{{ asset('img/Screenshot (508).png') }}" alt="" /></a>
+                    <a class="navbar-brand logo_h" href="{{ url('/') }}"><img width="100px" height="70px"
+                            style="border-radius:12px;" src="{{ asset('img/header_image.jpg') }}" alt="" /></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Home</a>
                             </li>
-
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false">Collection</a>
