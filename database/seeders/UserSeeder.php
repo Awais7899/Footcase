@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 9; $i++) {
+        for ($i = 1; $i <= 45; $i++) {
             User::create([
-                'name' => "User $i",
+                'name' => $i == 1 ? "footcase admin" : "User $i",
                 'email' => $i == 1 ? "footcase@admin.com" : "user$i@gmail.com",
                 'email_verified_at' => now(),
                 'password' => Hash::make('12345678'),
@@ -24,9 +24,8 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'role' => $i == 1 ? 'admin' : 'user',
-                'username' => "user$i",
+                'username' => $i == 1 ? "admin123" : "user$i",
             ]);
         }
-
     }
 }

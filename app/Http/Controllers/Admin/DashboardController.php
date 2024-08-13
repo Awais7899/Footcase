@@ -43,10 +43,24 @@ class DashboardController extends Controller
         return view('admin.index', compact('orders', 'users', 'login_activities', 'monthlyTotals', 'monthLabels', 'monthlyUserCounts'));
     }
 
+    // public function generateReport()
+    // {
+    //     $startDate = Carbon::now()->subMonth();
+    //     $endDate = Carbon::now();
+    //     $orders = Order::whereBetween('created_at', [$startDate, $endDate])->get();
+    //     // Pass the order data to the invoice view
+    //     $invoiceData = [
+    //         'orders' => $orders,
+    //     ];
+    //     // Generate PDF using the invoice data
+    //     $pdf = PDF::loadView('pdf.report', $invoiceData);
+    //     return $pdf->stream('report.pdf');
+    // }
+
     public function generateReport()
     {
-        $startDate = Carbon::now()->subMonth();
-        $endDate = Carbon::now();
+        $startDate = Carbon::now()->subMonths(6)->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
         $orders = Order::whereBetween('created_at', [$startDate, $endDate])->get();
         // Pass the order data to the invoice view
         $invoiceData = [

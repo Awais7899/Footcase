@@ -76,9 +76,9 @@ $(document).ready(function () {
     $(".active-product-area").owlCarousel({
         items: 1,
         autoplay: false,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 2000,
         loop: true,
-        nav: true,
+        // nav: true,
         navText: [
             "<img src='img/product/prev.png'>",
             "<img src='img/product/next.png'>",

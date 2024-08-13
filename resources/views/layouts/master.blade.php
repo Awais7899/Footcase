@@ -21,4 +21,8 @@
     @include('layouts.footer')
     @include('layouts.script')
     @yield('script')
+
+
+    <df-messenger intent="WELCOME" chat-title="FootCase" agent-id="2dcf6fb8-0044-411a-acb5-738bffcafc91"
+        language-code="en" style="height:200px; width:350px;"></df-messenger>
 </body>

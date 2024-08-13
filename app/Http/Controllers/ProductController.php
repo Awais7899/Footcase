@@ -54,9 +54,9 @@ class ProductController extends Controller
     public function create(Request $request)
     {
 
-        $request->validate([
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
-        ]);
+        // $request->validate([
+        //     'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
+        // ]);
         try {
             $product = new Product();
             $product->sku = $request['sku'];
@@ -126,13 +126,12 @@ class ProductController extends Controller
     {
         $categoriesProduct = Category::with('products')->get();
         if ($request->loadData) {
-            $products = Product::all();
+            $products = Product::latest()->limit(20)->get();
             $user_status = Auth::check() ? Auth::user() : null;
             return response()->json(['products' => $products, 'user_status' => $user_status]);
         }
         return view('index', compact('categoriesProduct'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */

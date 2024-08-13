@@ -124,8 +124,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="owl-carousel active-product-area">
         <!-- single product slide -->
         @foreach ($categoriesProduct as $category)
@@ -135,13 +133,12 @@
                         <div class="col-lg-6 text-center">
                             <div class="section-title">
                                 <h1>{{ $category->title }} Footwear</h1>
-                                <p>Matrix, From Sole to Soul, Be the King of Style!</p>
+                                <p>Footcase, From Sole to Soul, Be the King of Style!</p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <!-- single product -->
-
                         @foreach ($category->products as $product)
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-product">
@@ -168,7 +165,6 @@
                                                 </h6>
                                             </div>
                                         @endif
-
                                         <div class="prd-bottom">
                                             <a href="javascript:void(0)" class="social-info add-to-cart-btn"
                                                 auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
@@ -189,269 +185,6 @@
                 </div>
             </div>
         @endforeach
-        <!-- single product slide -->
-        {{-- <div class="single-product-slider">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <div class="section-title">
-                            <h1>Coming Products</h1>
-                            <p>Matrix, From Sole to Soul, Be the King of Style!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p6.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p3.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p5.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p1.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p4.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/features/f-icon3.png') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single product -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('img/product/p8.jpg') }}" alt="" />
-                            <div class="product-details">
-                                <h6>Matrix New Hammer sole for Sports person</h6>
-                                <div class="price">
-                                    <h6>Rs. 2999.00</h6>
-                                    <h6 class="l-through">Rs. 5000.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="login.html" target="_blank" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
-                                    </a>
-                                    <a class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Wishlist</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">view more</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </section>
 
 
@@ -602,7 +335,7 @@
                         <div class="product-details">
                             <h6>${product.sku}</h6>
 
-                          
+
                            ${priceContent}
                             <div class="prd-bottom">
                                 <a href="javascript:void(0)" class="social-info add-to-cart"

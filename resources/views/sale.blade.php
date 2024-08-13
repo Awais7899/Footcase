@@ -46,7 +46,7 @@
                                             </h6>
                                         </div>
                                         <div class="prd-bottom">
-                                            <a href="" class="social-info add-to-cart-btn"
+                                            <a href="javascript:void(0)" class="social-info add-to-cart-btn"
                                                 auth="{{ Auth::check() ? json_encode(Auth::user()) : null }}"
                                                 data-product-id="{{ $product->id }}">
                                                 <span class="ti-bag"></span>
@@ -64,6 +64,44 @@
                     </div>
 
                 </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="">
+                    <button type="button" class="close align-self-end m-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="login_form_inner">
+                        <h3>Log in</h3>
+                        <form class="row login_form" method="post" id="loginForm">
+                            @csrf
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="password" name="password"
+                                    placeholder="Password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Password'" />
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" class="primary-btn">
+                                    Log In
+                                </button>
+                                <a href="">Forgot Password?</a>
+
+                            </div>
+                        </form>
+                        <div class="d-flex row justify-content-center py-2"><span>Don't have a
+                                account? </span><a href="">
+                                &nbsp;&nbsp;SignUp</a></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
